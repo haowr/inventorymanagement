@@ -1,0 +1,293 @@
+<button id="openModalButton" class="hidebutton " hidden="true" backdrop="false" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<br>
+
+<div class="container">
+
+  <div class="row">
+
+
+
+    <!-- <h2>Basic Modal Example</h2>-->
+    <!-- Trigger the modal with a button -->
+
+
+    <!-- Modal -->
+    <div class="modal animated fadeIn" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title openssans">ROSE</h2>
+          </div>
+          <div class="modal-body text-center">
+            <!--<div class="bigCircle rotating"><div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="littleCircle"></div></div>-->
+            <h2 class="openssans text-center">It is now {{monthName}} {{year}}!</h2>
+            <p style="font-size:20px;">Orders for the month of {{previousMonth}}, have been charted, and reset</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <button style="opacity:0;"class = "btn btn-default"(click)="openPopup();">open</button>-->
+    <div class="col-sm-12" style="text-align:center">
+      <div *ngIf="expenditureDangerWarningMobile &&!noThanksVar" class="arrow_box-mobile animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks</a>
+      </div>
+      <div *ngIf="expenditureDangerWarningMobileMedium &&!noThanksVar" class="arrow_box-mobile-532 animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks</a>
+      </div>
+      <div *ngIf="expenditureDangerWarningMobileSamsung &&!noThanksVar" class="arrow_box-mobile-360 animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks</a>
+      </div>
+      <div *ngIf="expenditureDangerWarningMobileIphoneX && !noThanksVar" class="arrow_box-mobile-375 animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks</a>
+      </div>
+      <div *ngIf="expenditureDangerWarningMobileSmall" class="arrow_box-mobile-359 animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks</a>
+      </div>
+      <div *ngIf="expenditureDangerWarningMobileSmaller &&!noThanksVar" class="arrow_box-mobile-293 animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks</a>
+      </div>
+      <div *ngIf="expenditureDangerWarningMobileSmallest &&!noThanksVar" class="arrow_box-mobile-244 animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks</a>
+      </div>
+    </div>
+    <div class="col-sm-12 " style="text-align:center">
+      <div *ngIf="expenditureDangerWarning &&!noThanksVar" class="arrow_box animated flash">
+        <h4 style="color:black; font-family: 'Lora', serif; text-align:center; text-decoration:underline;">Description</h4>
+        <p style="color:black; font-family: 'Lora', serif; text-align:center;overflow-wrap:break-word; ">{{subContractorName}}'s Expenditures Have Reached Extremely High Levels, Would You Like To Contact {{subContractorContactName}}?</p>
+        <a style="color:cadetblue" href="mailto:{{subContractorContactEmail}}"> Send Email</a>
+        <br>
+        <a style="color:cadetblue" (click)="noThanks()" href="javascript:void(0);"> No Thanks!</a>
+      </div>
+
+
+      <div class="panel panel-default">
+
+        <h3 class="subcontractorlabel animated fadeIn">Name:
+          <h4 class="subcontractorlabel animated fadeIn">{{subContractorName}}</h4>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <h3 class="subcontractorlabel animated fadeIn">Contact Name:
+          <h4 class="subcontractorlabel animated fadeIn">{{subContractorContactName}}</h4>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <h3 class="subcontractorlabel animated fadeIn">Contact Phone:
+          <h4 class="subcontractorlabel animated fadeIn">{{subContractorContactPhone}}</h4>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <h3 class="subcontractorlabel animated fadeIn">E-mail:
+          <h4 class="subcontractorlabel animated fadeIn"><a href="mailto:{{subContractorContactEmail}}">{{subContractorContactEmail}}</a></h4>
+        </h3>
+      </div>
+      <div class="panel panel-default">
+        <h3 class="subcontractorlabel animated fadeIn">Expenditures This Month:
+          <h4 [ngClass]="{'text-danger': totalCostThisMonth >= 2000,'text-warning':totalCostThisMonth >=1000, 'text-success':totalCostThisMonth < 1000}"
+            class="subcontractorlabel animated fadeIn">{{totalCostThisMonth| currency}}</h4>
+        </h3>
+        <div class="placeholderforexpenditureloadingicon" *ngIf="!expenditureLoading">
+
+        </div>
+        <i class="fa fa-cog fa-spin fa-3x fa-fw" *ngIf="expenditureLoading" style="font-size:21px;"></i><span *ngIf="expenditureLoading">LOADING CHART DATA</span>
+        <i
+          class="fa fa-cog fa-spin fa-3x fa-fw" *ngIf="expenditureLoading" style="font-size:21px;"></i>
+          <span class="sr-only">Loading...</span>
+
+      </div>
+      <canvas baseChart [chartType]="'bar'" [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [legend]="true"></canvas>
+
+      <br>
+      <br>
+      <br>
+
+    </div>
+
+    <div class="panel panel-default" style="text-align: center">
+      <button (click)="openVeritivInventory()" class="btn btn-default form-control animated fadeIn">Open/Close Veritiv Inventory Sheet</button>
+    </div>
+    <div class="panel panel-default" style="text-align: center">
+      <button (click)="openWescleanInventory()" class="btn btn-default form-control  animated fadeIn">Open/Close Wesclean Inventory Sheet</button>
+    </div>
+    <div class="panel panel-default" style="text-align: center">
+      <button (click)="openToplineInventoryok()" class="btn btn-default form-control animated fadeIn">Open/Close Topline Inventory Sheet</button>
+    </div>
+
+
+    <div class="col-sm-12" style="border: 1px solid #ddd;" *ngIf="veritivInventory2">
+      <h2 class="subcontractorlabel">Veritiv Inventory</h2>
+      <div class="table-responsive">
+        <table class="table animated fadeIn" *ngFor="let item of inventory;let i=index">
+          <thead class="info">
+            <tr class="success">
+              <th>product code</th>
+              <th>description</th>
+              <th>color</th>
+              <th>size</th>
+              <th>price</th>
+              <th>unit</th>
+              <th>Recieved</th>
+            </tr>
+          </thead>
+          <td>
+            <tr><a [routerLink]="['/clients',client,location,item.supplier,item.productcode]">{{item.productcode}}</a></tr>
+          </td>
+          <td>
+            <tr class="info">{{item.description|slice:0:40 }}</tr>
+          </td>
+          <td>
+            <tr>{{item.color}}</tr>
+          </td>
+          <td>
+            <tr>{{item.size}}</tr>
+          </td>
+          <td>
+            <tr>{{item.price}}</tr>
+          </td>
+          <td>
+            <tr>{{item.unit}}</tr>
+          </td>
+          <td>
+            <tr>
+              <i class="fa fa-plus-circle buttonstyling" (click)="increaseVeritivCanadaInventory(item.supplier,item.price,item.productcode,i);"
+                aria-hidden="true"></i>
+              <span style="font-size:16px"> {{item.ordered}} </span>
+              <i class="fa fa-minus-circle buttonstyling" (click)="decreaseVeritivCanadaInventory(item.ordered,item.supplier,item.price,item.productcode);"
+                aria-hidden="true"></i>
+            </tr>
+          </td>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-12" style="border: 1px solid #ddd;" *ngIf="wescleanInventory2">
+
+      <h2 class="subcontractorlabel">Wesclean Inventory</h2>
+
+      <div class="table-responsive">
+
+        <table class="table animated fadeIn" *ngFor="let item of wescleanInventoryArray;let i=index">
+
+          <thead>
+
+            <tr class="success">
+              <th class="col-sm-2">product code</th>
+              <th class="col-sm-2">description</th>
+              <th class="col-sm-2">color</th>
+              <th class="col-sm-2">price</th>
+              <th class="col-sm-2">unit</th>
+              <th class="col-sm-2">Recieved</th>
+            </tr>
+
+          </thead>
+
+          <td>
+            <tr><a [routerLink]="['/clients',client,location,item.supplier,item.productcode]">{{item.productcode}}</a></tr>
+          </td>
+          <td>
+            <tr>{{item.description|slice:0:40 }}</tr>
+          </td>
+          <td>
+            <tr>{{item.color}}</tr>
+          </td>
+          <td>
+            <tr>{{item.price}}</tr>
+          </td>
+          <td>
+            <tr>{{item.unit}}</tr>
+          </td>
+          <td>
+            <tr>
+              <i class="fa fa-plus-circle buttonstyling" (click)="increaseWescleanInventory(item.supplier,item.price,item.productcode,i);"
+                aria-hidden="true"></i>
+              <span style="font-size:16px"> {{item.ordered}} </span>
+              <i class="fa fa-minus-circle buttonstyling" (click)="decreaseWescleanInventory(item.ordered,item.supplier,item.price,item.productcode);"
+                aria-hidden="true"></i>
+            </tr>
+          </td>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-12" style="border: 1px solid #ddd;" *ngIf="toplineInventory2">
+      <h2 class="subcontractorlabel">Topline Inventory</h2>
+      <div class="table-responsive">
+        <table class="table animated fadeIn" *ngFor="let item of toplineInventoryArray;let i=index">
+          <thead>
+            <tr class="success">
+              <th class="col-sm-2">product code</th>
+              <th class="col-sm-2">description</th>
+              <th class="col-sm-2">color</th>
+              <th class="col-sm-2">price</th>
+              <th class="col-sm-2">unit</th>
+              <th class="col-sm-2">Recieved</th>
+            </tr>
+          </thead>
+          <td>
+            <tr><a [routerLink]="['/clients',client,location,item.supplier,item.productcode]">{{item.productcode}}</a></tr>
+          </td>
+          <td>
+            <tr>{{item.description|slice:0:40 }}</tr>
+          </td>
+          <td>
+            <tr>{{item.color}}</tr>
+          </td>
+          <td>
+            <tr>{{item.price}}</tr>
+          </td>
+          <td>
+            <tr>{{item.unit}}</tr>
+          </td>
+          <td>
+            <tr>
+              <i class="fa fa-plus-circle buttonstyling" (click)="practiceIncreaseToplineInventory(item.supplier,item.price,item.productcode,i);"
+                aria-hidden="true"></i>
+              <span style="font-size:16px"> {{item.ordered  }} </span>
+              <i class="fa fa-minus-circle buttonstyling" (click)="decreaseToplineInventory(item.ordered,item.supplier,item.price,item.productcode,i);"
+                aria-hidden="true"></i>
+            </tr>
+          </td>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

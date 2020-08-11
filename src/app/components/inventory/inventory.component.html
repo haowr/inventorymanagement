@@ -1,0 +1,28 @@
+<div class= "container">
+  <div class="row">
+    <br>
+<br>
+<br>
+<br>
+      <div class= "row">
+
+     <div class ="col-sm-12" style="text-align:center">
+      <h2 class="subcontractorlabel">{{location}}'s Inventory</h2>
+      <h3 class="subcontractorlabel">{{description}}</h3>
+      <h3 class="subcontractorlabel">Manufacturer:{{manufacturer}}</h3>
+      <h3 class ="subcontractorlabel">Item #{{productcode}}</h3>
+      <canvas  baseChart
+      [chartType]="'line'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true"
+      ></canvas>
+    </div>
+    <div class = "col-sm-12" style="text-align:center" *ngFor = "let item of inventoryItem">
+
+    
+
+    </div>
+  </div>
+</div>

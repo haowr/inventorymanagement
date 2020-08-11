@@ -1,0 +1,515 @@
+<div class="container">
+  <div class="row">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div id="addclienttitle"class="col-sm-12" style="text-align:center">
+      <h1 class=" animated fadeIn osc" style="text-decoration:underline;">Add Client</h1>
+    </div>
+    
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6 text-center">
+      <br>
+      <button *ngIf="clientOpen"type="button" class = "btn btn-primary" (click)="openNewClientForm()">Open Add Client Form</button>
+      <button *ngIf="!clientOpen"type="button" class = "btn btn-primary" (click)="openNewClientForm()">Close Add Client Form</button>
+
+      <form *ngIf="clientFormOpen"class=" animated fadeIn" (submit)="addClient()">
+
+
+        
+          <ul class="nav nav-tabs animated fadeIn" *ngIf="clientFormOpen">
+
+            <br>
+            <li class="active"><a href="#name" data-toggle="tab" aria-expanded="false">Name</a></li>
+
+            <li class=""><a href="#phonenumber" data-toggle="tab" aria-expanded="false">Phone</a></li>
+
+            <li class=""><a href="#emailaddress" data-toggle="tab" aria-expanded="false">Email</a></li>
+            <li class=""><a href="#contactname" data-toggle="tab" aria-expanded="false">Contact Name</a></li>
+            <li class=""><a href="#contactphone" data-toggle="tab" aria-expanded="true">Contact Phone</a></li>
+            <li class=""><a href="#contactemail" data-toggle="tab" aria-expanded="false">Contact Email</a></li>
+           
+            <li class=""><a href="#addsubcontractor" data-toggle="tab" aria-expanded="false">Submit</a></li>
+
+      </ul>
+                <div id="myTabContent" style="border-bottom:1px solid gray" class="tab-content animated fadeIn" *ngIf=" clientFormOpen ">
+
+            <div style="border-bottom:1px solid gray" class="tab-pane fade active in" id="name">
+
+              <h4>Name</h4>
+
+              <input type="text" placeholder="(Please Enter Subcontractor Name...)" [(ngModel)]="name" name="name"
+                class="form-control">
+
+              <div *ngIf="addSubContractorNameEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+<br>
+            </div>
+
+
+            <div  style="border-bottom:1px solid gray"class="tab-pane fade" id="emailaddress">
+              <h4>Email Address</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Email Address...)" [(ngModel)]="emailaddress" name="emailaddress"
+                class="form-control">
+              <div *ngIf="addSubContractorEmailAddressEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+<br>
+            </div>
+            <div style="border-bottom:1px solid gray"class="tab-pane fade" id="phonenumber">
+              <h4>Phone Number</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Phone Number...)" [(ngModel)]="phonenumber" name="phonenumber"
+                class="form-control">
+              <div *ngIf="addSubContractorPhoneNumberEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+<br>
+            </div>
+            <div style="border-bottom:1px solid gray" class="tab-pane fade" id="contactname">
+              <h4>Contact Name</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Contact Name...)" [(ngModel)]="contactname" name="contactname"
+                class="form-control">
+              <div *ngIf="addSubContractorContactNameEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+<br>
+
+            </div>
+
+
+            <div style="border-bottom:1px solid gray"class="tab-pane fade" id="contactphone">
+              <h4>Contact Phone Number</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Contact Phone Number...)" [(ngModel)]="contactphone"
+                name="contactphone" class="form-control">
+              <div *ngIf="addSubContractorContactPhoneEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+<br>
+            </div>
+            <div style="border-bottom:1px solid gray"class="tab-pane fade" id="contactemail">
+              <h4>Contact Email</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Contact Email...)" [(ngModel)]="contactemail" name="contactemail"
+                class="form-control">
+              <div *ngIf="addSubContractorContactEmailEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+<br>
+            </div>
+
+
+
+
+                   <div style="border-bottom:1px solid gray"class="tab-pane fade" id="addsubcontractor">
+              <h4>Add Sub Contractor</h4>
+             <button type="submit" class="btn btn-default" >Submit</button>
+                        
+        
+ 
+<br>
+            </div>
+            <br>
+            <br>
+               <div *ngIf="clientFormOpen" class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 *ngIf="!addClientSuccess && !addClientLoading" class="panel-title">Add Client Instructions</h3>
+              <h3 *ngIf="addClientSuccess && !addClientLoading " class="panel-title">Client Addition Successful</h3>
+              <h3 *ngIf="addClientLoading " class="panel-title animated flash">Loading</h3>
+
+            </div>
+            <div class="panel-body">
+                  <div *ngIf=" !turnOffInstructions">
+                <br>
+                <br>
+                
+                
+              </div>
+              <p *ngIf="!turnOffInstructions && !addClientSuccess && !addClientLoading" class="text-primary"> 1. Input your information to the appropriate field (eg. "Name").</p>
+              <p *ngIf="!turnOffInstructions && !addClientSuccess && !addClientLoading" class="text-success"> 2. Click the next tab (eg. "Phone Number"), to input the appropriate information for that field.</p>
+              <p *ngIf="!turnOffInstructions && !addClientSuccess && !addClientLoading" class="text-warning"> 3. Do this for all fields ( All fields must be filled in ).</p>
+              <p *ngIf="!turnOffInstructions && !addClientSuccess && !addClientLoading" class="text-danger"> 4. Click the "Open Add Sub-Contractor", button to open the "Add Sub-Contractor Form", where you 
+                may add sub-contractors to your new client before clicking the "Add Client" button...
+           </p>
+                <h3 class = "animated flash text-center" *ngIf="addClientLoading">Adding Client To Database...</h3>
+            
+
+              <div *ngIf=" !turnOffInstructions">
+                <br>
+                <br>
+                <br>
+                
+              </div>
+              <div *ngIf="addClientFailed || addSubContractorNameEmpty || addSubContractorPhoneNumberEmpty ||
+                          emailAddressEmpty || contactNameEmpty || contactPhoneEmpty || contactEmailEmpty
+                          || subContractorsEmpty" class = "well well-sm">
+
+              <p *ngIf="addClientFailed">All Fields Empty...Please Input Fill In All Fields Before Continuing...</p>
+              <p *ngIf="addSubContractorNameEmpty && !addClientFailed">Client Name Field Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="addSubContractorPhoneNumberEmpty && !addClientFailed">Client Phone Number Field Empty...Please Input Information Before Continuing...</p>
+
+              <p *ngIf="emailAddressEmpty && !addClientFailed">Client Email Address Field Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="contactNameEmpty && !addClientFailed">Client Contact Name...Please Input Information Before Continuing...</p>
+              <p *ngIf="contactPhoneEmpty && !addClientFailed">Client Contact Phone Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="contactEmailEmpty && !addClientFailed">Client Contact Email Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="subContractorsEmpty && !addClientFailed">At Least One Sub-Contractor Must Be Loaded Before Continuing...</p>
+              </div>
+           
+            </div>
+               <h3 *ngIf="addClientSuccess" class = "animated flash">Sub-Contractor Successfully Loaded...</h3>
+              <i *ngIf="addClientSuccess"class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
+
+          </div>
+            <!-- <button class="btn btn-primary" (click)="openEditSubcontractorsFunc(i);">Edit Subcontractor</button>
+                <button class="btn btn-primary" (click)="openAddSubcontractorsFunc(i);">Add Subcontractor</button>
+         -->
+
+
+          
+
+          </div>
+          
+                       <button *ngIf="!clientOpen"type="button" class = "btn btn-primary" (click)="openNewSubContractorForm()">Close Add Sub-Contractor Form</button>
+       
+
+          <br>
+ 
+
+
+      
+   
+
+     
+       
+          <form *ngIf="newSubContractorFormOpen" (submit)="addSubContractor()">
+      <ul class="nav nav-tabs animated fadeIn" *ngIf="newSubContractorFormOpen" >
+
+            <br>
+            <li class="active"><a href="#scname" data-toggle="tab" aria-expanded="false">Name</a></li>
+
+            <li class=""><a href="#scphonenumber" data-toggle="tab" aria-expanded="false">Phone</a></li>
+
+            <li class=""><a href="#scemailaddress" data-toggle="tab" aria-expanded="false">Email</a></li>
+            <li class=""><a href="#sccontactname" data-toggle="tab" aria-expanded="false">Contact Name</a></li>
+            <li class=""><a href="#sccontactphone" data-toggle="tab" aria-expanded="true">Contact Phone</a></li>
+            <li class=""><a href="#sccontactemail" data-toggle="tab" aria-expanded="false">Contact Email</a></li>
+            <li class=""><a href="#sclocations" data-toggle="tab" aria-expanded="false">Locations</a></li>
+            <li class=""><a href="#scstorenumbers" data-toggle="tab" aria-expanded="false">Store Numbers</a></li>
+            <li class=""><a href="#addsubcontractor2" data-toggle="tab" aria-expanded="false">Submit</a></li>
+
+      </ul>
+             
+                         <div id="myTabContent" style="border-bottom:1px solid gray" class="tab-content animated fadeIn" *ngIf=" newSubContractorFormOpen ">
+
+            <div class="tab-pane fade active in" id="scname">
+
+              <h4>Name</h4>
+
+              <input type="text" placeholder="(Please Enter Subcontractor Name...)" [(ngModel)]="subContractorName" name="subContractorName"
+                class="form-control">
+
+              <div *ngIf="addSubContractorNameEmpty" class=" well well-sm">
+
+                <p>Sub-Contractor Name Field Cannot Be Empty...</p>
+                </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="scemailaddress">
+              <h4>Email Address</h4>
+
+              {{subContractorEmailAddress}}
+              <input type="text" placeholder="(Please Enter Subcontractor Email Address...)" [(ngModel)]="subContractorEmailAddress" name="subContractorEmailAddress"
+                class="form-control">
+              <div *ngIf="addSubContractorEmailAddressEmpty" class=" well well-sm">
+
+                <p>Sub-Contractor Email Address Field Cannot Be Empty...</p>
+
+                </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+            <div class="tab-pane fade" id="scphonenumber">
+              <h4>Phone Number2</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Phone Number...)" [(ngModel)]="subContractorPhoneNumber" name="subContractorPhoneNumber"
+                class="form-control">
+              <div *ngIf="addSubContractorPhoneNumberEmpty" class=" well well-sm">
+
+                <p>Sub-Contractor Phone Number Field Cannot Be Empty...</p>
+                </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+            <div class="tab-pane fade" id="sccontactname">
+              <h4>Contact Name</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Contact Name...)" [(ngModel)]="subContractorContactName" name="subContractorContactName"
+                class="form-control">
+              <div *ngIf="addSubContractorContactNameEmpty" class=" well well-sm">
+
+                <p>Sub-Contractor Contact Name Field Cannot Be Empty...</p>
+
+                </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="sccontactphone">
+              <h4>Contact Phone Number</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Contact Phone Number...)" [(ngModel)]="subContractorContactPhone"
+                name="subContractorContactPhone" class="form-control">
+              <div *ngIf="addSubContractorContactPhoneEmpty" class=" well well-sm">
+
+                <p>Sub-Contractor Contact Phone Field Cannot Be Empty...</p>
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+            <div class="tab-pane fade" id="sccontactemail">
+              <h4>Contact Email</h4>
+              <input type="text" placeholder="(Please Enter Subcontractor Contact Email...)" [(ngModel)]="subContractorContactEmail" name="subContractorContactEmail"
+                class="form-control">
+              <div *ngIf="addSubContractorContactEmailEmpty" class=" well well-sm">
+
+               <p>Sub-Contractor Contact Email Field Cannot Be Empty...</p>
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="sclocations">
+<br>
+              <div class="panel panel-default">
+                <div class="panel panel-heading">
+                  <h4>Locations</h4>
+                </div>
+                <div class="panel-body">
+                  <input type="text" placeholder="(Please Enter Subcontractor Locations...)" [(ngModel)]="subCLocations" placeholder="{{subContractor.locations}}"
+                    name="subCLocations" class="form-control">
+
+ <button type="button"class= "btn btn-default" (click)="addLocation();">Insert <i class="fa fa-plus-circle buttonstyling" aria-hidden="true" ></i></button>
+                  <button  type = "button"class= "btn btn-default" (click)="removeLocation();">Remove <i class="fa fa-minus-circle buttonstyling" aria-hidden="true" ></i></button>                         <div *ngIf="subContractorLocationSuccessfullyRemoved" class=" well well-sm">
+
+                        <p> Store Location Successfully Removed...</p>
+
+                  </div>
+                             <div *ngIf="subContractorLocationSuccessfullyAdded" class=" well well-sm">
+
+                        <p > Store Location Successfully Added...</p>
+
+                  </div>            <div *ngIf="subContractorLocationAlreadyEmpty" class=" well well-sm">
+
+                        <p> Store Location Already Empty...</p>
+
+                  </div>
+                  <div *ngIf="subContractorLocationFieldCannotBeEmpty" class=" well well-sm">
+
+                    <p> Store Location Field Cannot Be Empty...</p>
+
+                  </div>
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="scstorenumbers">
+
+<br>
+              <div class="panel panel-default">
+                <div class="panel panel-heading">
+
+                  <h4>Store Numbers</h4>
+                </div>
+                <div class="panel-body">
+                  <input type="text" placeholder="(Please Enter Subcontractor Store Numbers...)" [(ngModel)]="subContractorStoreNumbers" placeholder="{{subContractor.storenumbers}}"
+                    name="subContractorStoreNumbers" class="form-control">
+
+                  
+                  <button type="button"class= "btn btn-default" (click)="addStoreNumber();">Insert <i class="fa fa-plus-circle buttonstyling" aria-hidden="true" ></i></button>
+                  <button  type = "button"class= "btn btn-default" (click)="removeStoreNumber();">Remove <i class="fa fa-minus-circle buttonstyling" aria-hidden="true" ></i></button>
+                      <div *ngIf="subContractorStoreNumberSuccessfullyRemoved" class=" well well-sm">
+
+                        <p> Store Number Successfully Removed...</p>
+
+                  </div>
+                             <div *ngIf="subContractorStoreNumberSuccessfullyAdded" class=" well well-sm">
+
+                        <p > Store Number Successfully Added...</p>
+
+                  </div>            <div *ngIf="subContractorStoreNumberAlreadyEmpty" class=" well well-sm">
+
+                        <p> Store Number Already Empty...</p>
+
+                  </div>
+                  <div *ngIf="subContractorStoreNumberFieldCannotBeEmpty" class=" well well-sm">
+
+                    <p> Store Number Field Cannot Be Empty...</p>
+
+                  </div>
+                  <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                  <span *ngIf="addSubContractorLoading">LOADING</span>
+                  <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+                </div>
+              </div>
+
+
+              
+            </div>
+                   <div class="tab-pane fade" id="addsubcontractor2">
+              <h4>Add Sub Contractor</h4>
+              <input type="submit" class="btn btn-submit" value="Add Subcontractor">        
+                      
+             <!-- <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+-->
+            </div>
+            <!-- <button class="btn btn-primary" (click)="openEditSubcontractorsFunc(i);">Edit Subcontractor</button>
+                <button class="btn btn-primary" (click)="openAddSubcontractorsFunc(i);">Add Subcontractor</button>
+         -->
+
+
+          <br>
+          <br>
+
+          </div>
+  
+
+               <div *ngIf="newSubContractorFormOpen" class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 *ngIf="!addSubContractorSuccess && !addSubContractorLoading" class="panel-title">Add Sub-Contractor Instructions</h3>
+              <h3 *ngIf="addSubContractorSuccess && !addSubContractorLoading " class="panel-title">Sub-Contractor Addition Successful</h3>
+              <h3 *ngIf="addSubContractorLoading " class="panel-title animated flash">Loading</h3>
+
+            </div>
+            <div class="panel-body">
+
+              <p *ngIf="!turnOffInstructions && !addSubContractorSuccess" class="text-primary"> 1. Input your information to the appropriate field (eg. "Name").</p>
+              <p *ngIf="!turnOffInstructions && !addSubContractorSuccess" class="text-success"> 2. Click the next tab (eg. "Phone Number"), to input the appropriate information for that field.</p>
+              <p *ngIf="!turnOffInstructions && !addSubContractorSuccess" class="text-warning"> 3. Do this for all fields ( All fields must be filled in ).</p>
+              <p *ngIf="!turnOffInstructions && !addSubContractorSuccess" class="text-danger"> 4. Click the"Submit" tab when finshed, then click "Add Sub Contractor", and wait for the message indicating the new Sub Contractor has
+                been added.</p>
+                <h3 class = "animated flash text-center" *ngIf="addSubContractorLoading">Adding Sub-Contractor To Database...</h3>
+            
+
+              <h3 *ngIf="addSubContractorSuccess" class = "animated flash">Sub-Contractor Successfully Loaded...</h3>
+              <i *ngIf="addSubContractorSuccess"class="fa fa-check" aria-hidden="true" style="font-size:40px"></i>
+
+              <div *ngIf="addClientFailed || addSubContractorNameEmpty || addSubContractorPhoneNumberEmpty ||
+                          emailAddressEmpty || contactNameEmpty || contactPhoneEmpty || contactEmailEmpty
+                          || subContractorsEmpty" class = "well well-sm">
+                          
+              <p *ngIf="addSubContractorNameEmpty && !addSubcontractorFailed">Sub-Contractor Name Field Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="addSubContractorPhoneNumberEmpty && !addSubcontractorFailed">Sub-Contractor Phone Number Field Empty...Please Input Information Before Continuing...</p>
+
+              <p *ngIf="addSubContractorEmailAddressEmpty && !addSubcontractorFailed">Sub-Contractor Email Address Field Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="addSubContractorContactNameEmpty && !addSubcontractorFailed">Sub-Contractor Contact Name...Please Input Information Before Continuing...</p>
+              <p *ngIf="addSubContractorContactPhoneEmpty && !addSubcontractorFailed">Sub-Contractor Contact Phone Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="addSubContractorContactEmailEmpty && !addSubcontractorFailed">Sub-Contractor Contact Email Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="addSubContractorLocationsEmpty && !addSubcontractorFailed">A Sub-Contractor Store Locations Must Be Loaded Before Continuing...</p>
+              <p *ngIf="addSubContractorStoreNumbersEmpty && !addSubcontractorFailed">A Sub-Contractor Store Number Must Be Loaded Before Continuing...</p>
+              <p *ngIf="addSubcontractorFailed">All Fields Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="addClientFailed">All Fields Empty...Please Input Fill In All Fields Before Continuing...</p>
+              <p *ngIf="addSubContractorNameEmpty && !addClientFailed">Client Name Field Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="addSubContractorPhoneNumberEmpty && !addClientFailed">Client Phone Number Field Empty...Please Input Information Before Continuing...</p>
+
+              <p *ngIf="emailAddressEmpty && !addClientFailed">Client Email Address Field Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="contactNameEmpty && !addClientFailed">Client Contact Name...Please Input Information Before Continuing...</p>
+              <p *ngIf="contactPhoneEmpty && !addClientFailed">Client Contact Phone Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="contactEmailEmpty && !addClientFailed">Client Contact Email Empty...Please Input Information Before Continuing...</p>
+              <p *ngIf="subContractorsEmpty && !addClientFailed">At Least One Sub-Contractor Must Be Loaded Before Continuing...</p>
+              </div>
+           
+            </div>
+          </div>
+     
+
+
+          
+          </form>
+
+
+        
+
+                     <button type="submit" class="btn btn-default" >Submit</button>
+
+      </form>
+
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-12">
+
+
+
+
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <div class="jumbotron" style="text-align:center" *ngIf="clientAddSuccess">
+
+        {{clientAddSuccessMsg }}
+
+      </div>
+      <div class="jumbotron" style="text-align:center" *ngIf="clientAddFailed">
+
+        {{clientAddFailedMsg }}
+
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+  </div>
+</div>

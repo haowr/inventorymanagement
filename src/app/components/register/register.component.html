@@ -1,0 +1,64 @@
+<br>
+<br>
+<br>
+<br>
+<div class = "container">
+
+<h2 class ="animated fadeIn"> Register</h2>
+<form class ="animated fadeIn" (submit)="onRegisterSubmit()">
+  <div class = "form-group">
+    <label>Name</label>
+    <input type ="text" [(ngModel)]="name" name="name"class = "form-control">
+    <div *ngIf="nameCannotBeEmpty"class = "well well-sm">
+      {{nameCannotBeEmptyMsg}}
+    </div>
+  </div>
+    <div class = "form-group">
+    <label>Username</label>
+    <input type ="text"[(ngModel)]="username" name="username" class = "form-control">
+    <div *ngIf="usernameCannotBeEmpty" class = "well well-sm">
+      {{usernameCannotBeEmptyMsg}}
+    </div>
+  </div>
+    <div class = "form-group">
+    <label>Email</label>
+    <input type ="email" [(ngModel)]="email" name="email"class = "form-control">
+    <div *ngIf="emailCannotBeEmpty" class = "well well-sm">
+      {{emailCannotBeEmptyMsg}}
+    </div>
+       <div *ngIf="invalidEmail" class = "well well-sm">
+      {{invalidEmailMsg}}
+    </div>
+  </div>
+    <div class = "form-group">
+    <label>Password</label>
+    <input type ="password" [(ngModel)]="password" name="password"class = "form-control">
+    <div *ngIf="passwordCannotBeEmpty" class = "well well-sm">
+      {{passwordCannotBeEmptyMsg}}
+    </div>
+  </div>
+  <input type ="submit" class = "btn btn-primary" value="Submit">
+</form>
+<br>
+<div *ngIf="loadingRegistration" style="background-color:white;" class = "jumbotron text-center">
+  <i style ="font-size:22px;"class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+<span class="sr-only">Loading...</span>
+</div>
+<div *ngIf="registrationSuccess" class = "jumbotron text-center pulse animated fadeIn">
+  <h3 style = "font-family: 'Lora', serif; "> {{successfulRegistrationMsg}}</h3>
+ 
+</div>
+<div *ngIf="registrationFailed" class = "jumbotron text-center animated flash">
+  <h3 style = "font-family: 'Lora', serif; ">{{unSuccessfulRegistrationMsg}}</h3>
+   <h4 style = "font-family: 'Lora', serif; "> ({{errorMessage}})</h4>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>

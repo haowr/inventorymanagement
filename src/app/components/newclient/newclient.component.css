@@ -1,0 +1,58 @@
+.buttonstyling{
+
+    font-size:18px;
+    transition:0.2s;
+
+}
+.buttonstyling:active{
+
+    font-size:16px;
+    transition:0.2s;
+
+}
+#addclienttitle{
+    border:1px solid #ddd;
+}
+
+.osc{
+font-family: 'Open Sans Condensed', sans-serif;
+
+
+}
+#submitbuttonpadding{
+
+    padding-bottom:20px;
+
+}
+
+#subcontractorinfo{
+
+    opacity:0;
+    transition:1s;
+
+}
+#subcontractoricon:active #subcontractorinfo{
+
+    opacity:1;
+    transition:1s;
+
+
+}
+.chevronleft{
+
+display:inline-block;
+
+
+
+}
+.chevronright{
+    display:inline-block;
+  
+}
+#subcontractoricon:hover #subcontractorinfo{
+
+    opacity:1;
+    transition:1s;
+
+
+}

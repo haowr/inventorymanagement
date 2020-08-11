@@ -1,0 +1,39 @@
+<div class = "container">
+  <div class = "row">
+        <br>
+    <br>
+    <br>
+  <div class = "col-sm-12" style="text-align: center">
+    <h1> {{client}}</h1>
+    <div class = "col-sm-12 locationarray" *ngFor="let  store of storenumberArray; let index =i">
+      
+      <a href = "/clients/{{client}}/{{store.subcontractor.location}}">{{store.subcontractor.location}}</a>
+      <div class = "col-sm-12" >
+          <p><a href ="/clients/{{client}}/{{store.subcontractor.location}}/{{store.subcontractor.name}}/{{store.subcontractor.storenumber}}">{{store.subcontractor.storenumber}}</a></p>
+          <p><a href ="/clients/{{client}}/{{store.subcontractor.location}}/{{store.subcontractor.name}}">{{store.subcontractor.name}}</a></p>
+      </div>
+
+
+    </div>
+    <!--<div class = "col-sm-6 "  style="border:1px solid black;"*ngFor="let storenumber of storenumberArray;let i = index">
+      <div class = "col-sm-6"id ="storenumber" *ngIf ="i<1">
+       <p> {{storenumber.subcontractor.name}} </p>
+        <p>{{storenumber.subcontractor.contactphone}}</p>
+        <p>{{storenumber.subcontractor.contactname}}</p>
+        <p>{{storenumber.subcontractor.emailaddress}}</p>
+        <p>{{storenumber.subcontractor.contractamount}}</p>
+        <p>{{storenumber.subcontractor.storenumber}}</p>
+      </div>
+            <div class = "col-sm-6"id ="storenumber" *ngIf ="i>=1">
+       <p> {{storenumber.subcontractor.name}} </p>
+        <p>{{storenumber.subcontractor.contactphone}}</p>
+        <p>{{storenumber.subcontractor.contactname}}</p>
+        <p>{{storenumber.subcontractor.emailaddress}}</p>
+        <p>{{storenumber.subcontractor.contractamount}}</p>
+        <p>{{storenumber.subcontractor.storenumber}}</p>
+      </div>-->
+    
+  </div>
+  </div>
+</div>
+

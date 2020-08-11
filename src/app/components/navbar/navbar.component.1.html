@@ -1,0 +1,146 @@
+<!--
+    <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top">
+      <a class="navbar-brand" href="#">ROSE</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class=" nav navbar-nav navbar-left">
+          <li class="nav-item " [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class = "nav-link"  [routerLink]= "['/']">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+                <ul class=" nav navbar-nav navbar-right">
+                            <li class="nav-item active"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class = "nav-link"  [routerLink]= "['/clients']">Clients <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active"[routerLinkActive]="['active']"[routerLinkActiveOptions]="{exact:true}">
+            <a class = "nav-link"  [routerLink]= "['/login']">Login <span class="sr-only">(current)</span></a>
+          </li>
+              <li class="nav-item active"[routerLinkActive]="['active']"[routerLinkActiveOptions]="{exact:true}">
+            <a class = "nav-link"  [routerLink]= "['/register']">Register <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <!--<ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>-->
+<!--<form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>-->
+<!--</div>
+    </nav>-->
+<!--
+<nav class="navbar navbar-expand-lg navbar-fixed  ">
+  <a class="navbar-brand" href="#">ROSE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon" deluminate_imagetype="unknown"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto navbar-right">
+
+      <li class="nav-item" *ngIf="pendingRequest">
+       
+
+        <i class="fa fa-commenting nav-link" aria-hidden="true">15</i> 
+        </li>
+      <li class="nav-item" *ngIf="!pendingRequest">
+        <i class="fa fa-comment-o nav-link" aria-hidden="true">0</i>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/clients']"> Clients <span class="sr-only">(current)</span></a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/register']">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="onLogoutClick()">Logout</a>
+      </li>
+    </ul>
+    <!--
+    <form class="form-inline my-2 my-lg-0" abineguid="B8E4CCE6FF074251864EEF566CC26EBB">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>-->
+  <!--</div>
+</nav>-->
+<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Bootswatch</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="../default/">Default</a></li>
+                <li class="divider"></li>
+                <li><a href="../cerulean/">Cerulean</a></li>
+                <li><a href="../cosmo/">Cosmo</a></li>
+                <li><a href="../cyborg/">Cyborg</a></li>
+                <li><a href="../darkly/">Darkly</a></li>
+                <li><a href="../flatly/">Flatly</a></li>
+                <li><a href="../journal/">Journal</a></li>
+                <li><a href="../lumen/">Lumen</a></li>
+                <li><a href="../paper/">Paper</a></li>
+                <li><a href="../readable/">Readable</a></li>
+                <li><a href="../sandstone/">Sandstone</a></li>
+                <li><a href="../simplex/">Simplex</a></li>
+                <li><a href="../slate/">Slate</a></li>
+                <li><a href="../spacelab/">Spacelab</a></li>
+                <li><a href="../superhero/">Superhero</a></li>
+                <li><a href="../united/">United</a></li>
+                <li><a href="../yeti/">Yeti</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="../help/">Help</a>
+            </li>
+            <li>
+              <a href="http://news.bootswatch.com">Blog</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Sandstone <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li><a href="https://jsfiddle.net/bootswatch/m0nv7a0o/">Open Sandbox</a></li>
+                <li class="divider"></li>
+                <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
+                <li><a href="./bootstrap.css">bootstrap.css</a></li>
+                <li class="divider"></li>
+                <li><a href="./variables.less">variables.less</a></li>
+                <li><a href="./bootswatch.less">bootswatch.less</a></li>
+                <li class="divider"></li>
+                <li><a href="./_variables.scss">_variables.scss</a></li>
+                <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>

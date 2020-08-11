@@ -1,0 +1,875 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    <button id="openModalButton" class="hidebutton " hidden="true" backdrop="false" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <button class="hidebutton" hidden="true" id="btnclose" data-toggle="modal" data-dismiss="modal" data-target="#myModal">Close</button>
+
+    <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div style="z-index:1000002;" class="modal animated fadeIn" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title openssans">ROSE</h2>
+
+          </div>
+          <div class="modal-body text-center">
+            <!--<div class="bigCircle rotating"><div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="slice"></div><div class="littleCircle"></div></div>-->
+            <h3 class="openssans text-center animated flash text-danger" *ngIf="areYouSure">Are you sure?</h3>
+            <i style="font-size:30px;" *ngIf="areYouSure" class="fa fa-exclamation-triangle text-center animated flash" aria-hidden="true"></i>
+            <p *ngIf="areYouSure" class="text-center">(This Action Cannot Be Undone)</p>
+
+            <h3 *ngIf="removalComplete" class="text-center animated flash text-success"> {{subContractorVar}} Successfully Removed!</h3>
+            <i *ngIf="removalComplete" class="fa fa-check animated flash  text-center" style="font-size:40px;" aria-hidden="true"></i>
+            <h3 class="modal-title text-center animated flash text-danger" *ngIf="removingSubContractor">Removing {{subContractorVar}}</h3>
+
+            <i style="font-size:20px;" *ngIf="removingSubContractor" class="fa fa-cog fa-spin fa-3x fa-fw">
+</i>
+            <span *ngIf="removingSubContractor">LOADING</span>
+            <i style="font-size:20px;" *ngIf="removingSubContractor" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+
+            <!-- <p style="font-size:20px;">Orders for the month of {{previousMonth}}, have been charted, and reset</p>-->
+          </div>
+          <div class="modal-footer">
+            <button *ngIf="areYouSure" type="button" class="btn btn-danger" (click)="removeSubContractor();">Yes</button>
+            <button *ngIf="areYouSure" type="button" class="btn btn-default" (click)="closeModal();">No</button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div id="editclienttitle" class=" col-sm-12 text-center">
+      <h1 style="text-decoration:underline;" class="osc">Edit Clients</h1>
+      <!--<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="" data-original-title="Enter New Information In The Appropriate Fields And Click Edit To Modify Client Info!">Tip!</button>
+
+-->
+
+    </div>
+
+
+    <div *ngIf="clientsLoading" class=" text-center">
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+      <i class="fa fa-cog fa-spin fa-3x fa-fw" style="font-size:30px;"></i> <span class="animated flash" style="font-family: 'Lora', serif; font-size:30px;">//LOADING//</span>
+      <i style="font-size:30px;" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+    </div>
+
+
+
+    <div class="col-sm-12 text-center" style="border-bottom:1px solid #ddd;" *ngFor="let client of clientsArray; let i=index;">
+      <br>
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-6">
+        <!-- <h4>{{client.name}}</h4>-->
+        <br>
+        <button *ngIf="!returnToClientForm" (click)="openEditFormFunc(i);" class="btn btn-primary ">Open/Close {{client.name}}</button>
+        <button *ngIf="returnToClientForm && indexVar == i" (click)="openEditFormFunc(i);" class="btn btn-primary ">Return To Edit Client Form</button>
+
+
+        <div [ngClass]="{'animated': editSubContractorFormReady || !editSubContractorFormReady,'fadeOutLeft': !editSubContractorFormReady, 'fadeInRight':editSubContractorFormReady}"
+          *ngIf="editSubContractorIndexVar == i && openEditSubcontractors && openEditForm && !loadingClients ">
+          <div *ngIf="editSubContractorIndexVar == i && openEditSubcontractors && openEditForm && !loadingClients  ">
+            <!--class="editindividualsubcontractorscontainer"-->
+            <div *ngFor="let subcontractor of subcontractorsArray[i]; let z = index; ">
+              <br>
+              <div style="border-bottom: 1px solid gray">
+                <!-- don't use this because i want all buttons visible && individualSubContractorIndexVar== z -->
+                <button *ngIf="editSubContractorIndexVar == i && openEditSubcontractors && openEditForm && !loadingClients " (click)="openIndividualSubContractor(z);"
+                  type="button" class="btn btn-default form-control animated fadeIn">Open/Close {{subcontractor.name}}.</button>
+              </div>
+              <br>
+              <ul class="nav nav-tabs animated fadeIn" *ngIf="editSubContractorIndexVar == i &&indexVar == i && openEditSubcontractors && individualSubContractorIndexVar== z && openIndividualSubContractorBoolean">
+
+
+                <li class=""><a href="#{{subcontractor[z]}}" data-toggle="tab" aria-expanded="false">Name</a></li>
+
+                <li class=""><a href="#{{subcontractor[z]+1}}" data-toggle="tab" aria-expanded="false">Phone</a></li>
+
+                <li class=""><a href="#{{subcontractor[z]+2}}" data-toggle="tab" aria-expanded="false">Email</a></li>
+                <li class=""><a href="#{{subcontractor[z]+3}}" data-toggle="tab" aria-expanded="false">Contact Name</a></li>
+                <li class=""><a href="#{{subcontractor[z]+4}}" data-toggle="tab" aria-expanded="true">Contact Phone</a></li>
+                <li class=""><a href="#{{subcontractor[z]+5}}" data-toggle="tab" aria-expanded="false">Contact Email</a></li>
+                <li class=""><a href="#{{subcontractor[z]+6}}" data-toggle="tab" aria-expanded="false">Locations</a></li>
+                <li class=""><a href="#{{subcontractor[z]+7}}" data-toggle="tab" aria-expanded="false">Store Numbers</a></li>
+                <li class=""><a href="#{{subcontractor[z]+8}}" data-toggle="tab" aria-expanded="false">Remove Sub-Contractor</a></li>
+
+
+
+
+              </ul>
+              <div id="myTabContent" style="border-bottom:1px solid gray" class="tab-content animated fadeIn" *ngIf=" editSubContractorIndexVar == i&&indexVar == i && openEditSubcontractors && openEditForm && individualSubContractorIndexVar== z && openIndividualSubContractorBoolean ">
+                <br>
+                <div class="tab-pane fade active in" id="{{subcontractor[z]}}">
+                  <h4>{{subcontractor.name}}:</h4>
+                  <input class="form-control" placeholder="{{subcontractor.name}}" name='subContractorName' [(ngModel)]='subContractorName'
+                    type="text">
+                  <button (click)="editSubContractorFunc(client.name,subcontractor.name,z,i,'name',subcontractor._id);" class="btn btn-default form-control">edit</button>
+         
+                  <div class="well well-sm" *ngIf="subContractorNameEmpty">
+                    {{editSubContractorFieldEmptyMsg}}
+                  </div>
+                  <br>
+
+                  <br>
+
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+1}}">
+
+                  <h4>Sub Contractor Phone Number:</h4>
+                  <input class="form-control" placeholder="{{subcontractor.phonenumber}}" name='subContractorPhoneNumber' [(ngModel)]='subContractorPhoneNumber'
+                    type="text">
+                  <button (click)="editSubContractorFunc(client.name,subcontractor.phonenumber,z,i,'phonenumber',subcontractor._id);" class="btn btn-default form-control">edit</button>
+
+                  <div class="well well-sm" *ngIf="subContractorPhoneNumberEmpty">
+                    {{editSubContractorFieldEmptyMsg}}
+                  </div>
+                  <br>
+
+
+
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+2}}">
+
+                  <h4>Sub Contractor Email:</h4>
+
+                  <input class="form-control" placeholder="{{subcontractor.emailaddress}}" name='subContractorEmailAddress' [(ngModel)]='subContractorEmailAddress'
+                    type="email">
+                  <button (click)="editSubContractorFunc(client.name,subcontractor.emailaddress,z,i,'emailaddress',subcontractor._id);" class="btn btn-default form-control">edit</button>
+                  <div class="well well-sm" *ngIf="subContractorEmailAddressEmpty">
+                    {{editSubContractorFieldEmptyMsg}}
+                  </div>
+                 
+ 
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+3}}">
+
+                  <h4>Sub Contractor Contact Name:</h4>
+                  <input class="form-control" placeholder="{{subcontractor.contactname}}" name='subContractorContactName' [(ngModel)]='subContractorContactName'
+                    type="text">
+                  <button (click)="editSubContractorFunc(client.name,subcontractor.contactname,z,i,'contactname',subcontractor._id);" class="btn btn-default form-control">edit</button>
+                  <div class="well well-sm" *ngIf="subContractorContactNameEmpty">
+                    {{editSubContractorFieldEmptyMsg}}
+                  </div>
+                  <br>
+     
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+4}}">
+
+                  <h4>Sub Contractor Contact Phone:</h4>
+                  <input class="form-control" placeholder="{{subcontractor.contactphone}}" name='subContractorContactPhone' [(ngModel)]='subContractorContactPhone'
+                    type="text">
+                  <button (click)="editSubContractorFunc(client.name,subcontractor.contactphone,z,i,'contactphone',subcontractor._id);" class="btn btn-default form-control">edit</button>
+                  <div class="well well-sm" *ngIf="subContractorContactPhoneEmpty">
+                    {{editSubContractorFieldEmptyMsg}}
+                  </div>
+
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+5}}">
+
+                  <h4>Sub Contractor Contact Email:</h4>
+                  <input class="form-control" placeholder="{{subcontractor.contactemail}}" name='subContractorContactEmail' [(ngModel)]='subContractorContactEmail'
+                    type="email">
+                  <button (click)="editSubContractorFunc(client.name,subcontractor.contactemail,z,i,'contactemail',subcontractor._id);" class="btn btn-default form-control">edit</button>
+                  <div class="well well-sm" *ngIf="subContractorContactEmailEmpty">
+                    {{editSubContractorFieldEmptyMsg}}
+                  </div>
+     
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+6}}">
+                  <br>
+                  <div class="panel panel-default">
+                    <div class="panel panel-heading">
+                      <label>Locations(SC)</label>
+                    </div>
+                    <div class="panel-body">
+                      <input type="text" placeholder="(Please Enter Subcontractor Locations...)" [(ngModel)]="subCLocations2" placeholder="{{subcontractor.locations}}"
+                        name="subCLocations2" class="form-control">
+
+                      <button class="btn btn-default " (click)="permaAddLocationToSubcontractorFunc(i,subcontractor._id,subcontractor.locations,'addlocation',client.name,subcontractor.name); $event.preventDefault();">Insert    <i class="fa fa-plus-circle buttonstyling" aria-hidden="true"></i></button>
+                      <button class="btn btn-default" (click)="permaRemoveLocationFromSubcontractorFunc(z,subcontractor._id,subcontractor.locations,'removelocation',subcontractor.name); $event.preventDefault();">Remove  <i class="fa fa-minus-circle buttonstyling" aria-hidden="true"></i></button>
+
+                      <br>
+
+                    </div>
+
+
+                    <div class="well well-sm" *ngIf="addSubcontractorLocationConditionsMet">
+                      <p><strong> {{addSubcontractorLocationConditionsMetMsg}}</strong></p>
+
+                    </div>
+                    <div class="well well-sm" *ngIf="addSubcontractorLocationsConditionsNotMet">
+
+                      <p><strong>{{addSubcontractorLocationsConditionsNotMetMsg}}</strong></p>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+7}}">
+                  <br>
+                  <div class="panel panel-default">
+                    <div class="panel panel-heading">
+
+                      <label>Store Numbers(SC)</label>
+                    </div>
+                    <div class="panel-body">
+                      <input type="text" placeholder="(Please Enter Subcontractor Store Numbers...)" [(ngModel)]="subCStoreNumbers2" placeholder="{{subcontractor.storenumbers}}"
+                        name="subCStoreNumbers2" class="form-control">
+
+                      <button class="btn btn-default" (click)="permaAddStoreNumberToSubcontractorFunc(i,subcontractor._id,subcontractor.storenumbers,'addlocation',client.name,subcontractor.name); $event.preventDefault();">Insert    <i class="fa fa-plus-circle buttonstyling" aria-hidden="true" ></i></button>
+                      <button class="btn btn-default" (click)=" permaRemoveStoreNumberFromSubcontractorFunc(i,subcontractor._id,subcontractor.storenumbers,'addlocation',client.name,subcontractor.name); $event.preventDefault();">Remove  <i class="fa fa-minus-circle buttonstyling" aria-hidden="true" ></i></button>
+
+                      <br>
+
+
+                      <div class="well well-sm" *ngIf="addSubcontractorStoreNumberConditionsMet">
+                        <p><strong> {{addSubcontractorStoreNumberConditionsMetMsg}}</strong></p>
+
+                      </div>
+                      <div class="well well-sm" *ngIf="addSubcontractorStoreNumbersConditionsNotMet">
+
+                        <p><strong>{{addSubcontractorStoreNumbersConditionsNotMetMsg}}</strong></p>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+
+                </div>
+                <div class="tab-pane fade" id="{{subcontractor[z]+8}}">
+
+
+
+
+                  <h3>Remove {{subcontractor.name}}</h3>
+
+
+
+                  <button (click)="openRemoveSubContractorModal(client.name,z,subcontractor.name,subcontractor._id);" class="btn btn-danger form-control">Remove {{subcontractor.name}}</button>
+
+
+
+
+
+                </div>
+                <br>
+
+              </div>
+
+
+              <div *ngIf="editSubContractorIndexVar == i &&indexVar == i && openEditSubcontractors && individualSubContractorIndexVar== z && openIndividualSubContractorBoolean"
+                class="panel panel-primary animated fadeIn">
+
+                <div class="panel-heading">
+                  <h3 *ngIf="!editSubContractorSuccess" class="panel-title">Edit Sub Contractor Instructions!</h3>
+                  <h3 *ngIf="editSubContractorSuccess" class="panel-title">Edit Successful!</h3>
+
+                </div>
+                <div class="panel-body">
+                  <div *ngIf="editClientLoading || addSubContractorLoading || editSubContractorLoading || loadingNewSubContractors" class=" text-center">
+                    <br>
+
+                    <i class="fa fa-cog fa-spin fa-3x fa-fw" style="font-size:20px;"></i> <span class="animated flash" style="font-family: 'Lora', serif; font-size:20px;">//LOADING//</span>
+                    <i style="font-size:20px;" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+                  </div>
+                  <p *ngIf="!editSubContractorSuccess && !editSubContractorLoading" class="text-primary"> 1. Input your information to the appropriate field (eg. "Name").</p>
+                  <p *ngIf="!editSubContractorSuccess && !editSubContractorLoading" class="text-success"> 2. Click "Edit" once completed, and wait for the message indicating the edit has been accepted.</p>
+                  <p *ngIf="!editSubContractorSuccess && !editSubContractorLoading" class="text-danger"> 3. (Field Cannot Be Empty)</p>
+                  <h3 class="animated flash text-center" style="font-family: 'Lora', serif; " *ngIf="editSubContractorSuccess && !editSubContractorLoading">{{subcontractor.name}} Successfully Edited!</h3>
+                  <i *ngIf="editSubContractorSuccess &&!editSubContractorLoading" class="fa fa-check animated flash  text-center" style="font-size:40px;"
+                    aria-hidden="true"></i>
+
+
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <form [ngClass]="{'animated': addSubContractorFormReady || !addSubContractorFormReady,'fadeOutLeft': !addSubContractorFormReady, 'fadeInRight':addSubContractorFormReady}"
+          *ngIf="!loadingClients && eScFormReady && addSubContractorIndexVar == i" class=" animated fadeIn" (submit)="addSubcontractor(client.name)">
+
+
+          <ul class="nav nav-tabs animated fadeIn" *ngIf=" openIndividualAddSubContractorBoolean ">
+
+
+            <li class=""><a id="asname" href="#name{{client[i]+1}}" data-toggle="tab" aria-expanded="false">Name</a></li>
+
+            <li class=""><a id="asphonenumber" href="#phonenumber{{client[i]+2}}" data-toggle="tab" aria-expanded="false">Phone</a></li>
+
+            <li class=""><a id="asemailaddress" href="#emailaddress{{client[i]+3}}" data-toggle="tab" aria-expanded="false">Email</a></li>
+            <li class=""><a id="ascontactname" href="#contactname{{client[i]+4}}" data-toggle="tab" aria-expanded="false">Contact Name</a></li>
+            <li class=""><a id="ascontactphone" href="#contactphone{{client[i]+5}}" data-toggle="tab" aria-expanded="true">Contact Phone</a></li>
+            <li class=""><a id="ascontactemail" href="#contactemail{{client[i]+6}}" data-toggle="tab" aria-expanded="false">Contact Email</a></li>
+            <li class=""><a id="aslocations" href="#locations{{client[i]+7}}" data-toggle="tab" aria-expanded="false">Locations</a></li>
+            <li class=""><a id="asstorenumbers" href="#storenumbers{{client[i]+8}}" data-toggle="tab" aria-expanded="false">Store Numbers</a></li>
+            <li *ngIf="subContractorName != '' && subContractorPhoneNumber != '' && subContractorEmailAddress != '' && subContractorContactName != '' && subContractorContactPhone != '' && subContractorContactEmail != '' 
+                          && subcontractorStoreNumbers.length > 0 && subcontractorLocations.length > 0" class="animated flash"><a id="assubmit" href="#addsubcontractor{{client[i]+9}}" data-toggle="tab" aria-expanded="false">Submit</a></li>
+            <!--   <li class=""><a href="#addsubcontractor{{client[i]+11}}" data-toggle="tab" aria-expanded="false">Edit Sub-Contractors</a></li>-->
+
+
+
+
+          </ul>
+          <div id="myTabContent" style="border-bottom:1px solid gray" class="tab-content animated fadeIn" *ngIf=" openIndividualAddSubContractorBoolean ">
+
+            <div class="tab-pane fade active in" id="name{{client[i]+1}}">
+
+              <h4>Name</h4>
+
+              <input type="text" placeholder="(Please Enter Subcontractor Name...)" [(ngModel)]="subContractorName" name="subContractorName"
+                class="form-control">
+              <i *ngIf="subContractorName == '' || subContractorPhoneNumber == '' || subContractorEmailAddress == '' || subContractorContactName == '' || subContractorContactPhone == '' || subContractorContactEmail == '' 
+                          || subcontractorStoreNumbers.length <= 0 || subcontractorLocations.length <= 0" class="fa fa-chevron-left"
+                (click)="openNextTab('asstorenumbers','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i *ngIf="subContractorName == '' || subContractorPhoneNumber == '' || subContractorEmailAddress == '' || subContractorContactName == '' || subContractorContactPhone == '' || subContractorContactEmail == '' 
+                          || subcontractorStoreNumbers.length <= 0 || subcontractorLocations.length <= 0" class="fa fa-chevron-left"
+                (click)="openNextTab('asstorenumbers','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i *ngIf="subContractorName != '' && subContractorPhoneNumber != '' && subContractorEmailAddress != '' && subContractorContactName != '' && subContractorContactPhone != '' && subContractorContactEmail != '' 
+                          && subcontractorStoreNumbers.length > 0 && subcontractorLocations.length > 0" class="fa fa-chevron-left animated flash"
+                (click)="openNextTab('assubmit','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i *ngIf="subContractorName != '' && subContractorPhoneNumber != '' && subContractorEmailAddress != '' && subContractorContactName != '' && subContractorContactPhone != '' && subContractorContactEmail != '' 
+                          && subcontractorStoreNumbers.length > 0 && subcontractorLocations.length > 0" class="fa fa-chevron-left animated flash"
+                (click)="openNextTab('assubmit','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="addSubContractorNameEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="phonenumber{{client[i]+2}}">
+
+
+              <h4>Phone Number</h4>
+              <input id="asphonenumberinput" type="text" placeholder="(Please Enter Subcontractor Phone Number...)" [(ngModel)]="subContractorPhoneNumber"
+                name="subContractorPhoneNumber" class="form-control">
+              <i class="fa fa-chevron-left" (click)="openNextTab('asname','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asname','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <i class="fa fa-chevron-right" (click)="openNextTab('asemailaddress','asemailaddressinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('asemailaddress','asemailaddressinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="addSubContractorPhoneNumberEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+            <div class="tab-pane fade" id="emailaddress{{client[i]+3}}">
+              <h4>Email Address</h4>
+              <input id="asemailaddressinput" type="text" placeholder="(Please Enter Subcontractor Email Address...)" [(ngModel)]="subContractorEmailAddress"
+                name="subContractorEmailAddress" class="form-control">
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <i class="fa fa-chevron-right" (click)="openNextTab('ascontactname','ascontactnameinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ascontactname','ascontactnameinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="addSubContractorEmailAddressEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+            <div class="tab-pane fade" id="contactname{{client[i]+4}}">
+              <h4>Contact Name</h4>
+              <input id="ascontactnameinput" type="text" placeholder="(Please Enter Subcontractor Contact Name...)" [(ngModel)]="subContractorContactName"
+                name="subContractorContactName" class="form-control">
+              <i class="fa fa-chevron-left" (click)="openNextTab('asemailaddress','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asemailaddress','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <i class="fa fa-chevron-right" (click)="openNextTab('ascontactphone','ascontactphoneinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ascontactphone','ascontactphoneinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="addSubContractorContactNameEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="contactphone{{client[i]+5}}">
+              <h4>Contact Phone Number</h4>
+              <input id="ascontactphoneinput" type="text" placeholder="(Please Enter Subcontractor Contact Phone Number...)" [(ngModel)]="subContractorContactPhone"
+                name="subContractorContactPhone" class="form-control">
+              <i class="fa fa-chevron-left" (click)="openNextTab('ascontactname','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('ascontactname','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <i class="fa fa-chevron-right" (click)="openNextTab('ascontactemail','ascontactemailinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ascontactemail','ascontactemailinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="addSubContractorContactPhoneEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+            <div class="tab-pane fade" id="contactemail{{client[i]+6}}">
+              <h4>Contact Email</h4>
+              <input id="ascontactemailinput" type="text" placeholder="(Please Enter Subcontractor Contact Email...)" [(ngModel)]="subContractorContactEmail"
+                name="subContractorContactEmail" class="form-control">
+              <i class="fa fa-chevron-left" (click)="openNextTab('ascontactphone','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('ascontactphone','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <i class="fa fa-chevron-right" (click)="openNextTab('aslocations','aslocationsinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('aslocations','aslocationsinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="addSubContractorContactEmailEmpty" class=" well well-sm">
+
+                {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+              <span *ngIf="addSubContractorLoading">LOADING</span>
+              <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="locations{{client[i]+7}}">
+              
+             
+                
+                  <h4>Locations</h4>
+             
+               
+                  <input id="aslocationsinput" type="text" placeholder="(Please Enter Subcontractor Locations...)" [(ngModel)]="subCLocations"
+                    placeholder="{{subcontractorLocations}}" name="subCLocations" class="form-control">
+
+                  <button type="button" class="btn btn-default" (click)="addLocationToSubcontractorFunc();">Insert <i class="fa fa-plus-circle buttonstyling" aria-hidden="true" ></i></button>
+                  <button type="button" class="btn btn-default" (click)="removeLocationFromSubcontractorFunc();">Remove <i class="fa fa-minus-circle buttonstyling" aria-hidden="true" ></i></button>
+                  <br>
+                  <i class="fa fa-chevron-left" (click)="openNextTab('ascontactemail','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+                  <i class="fa fa-chevron-left" (click)="openNextTab('ascontactemail','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+                  <i class="fa fa-chevron-right" (click)="openNextTab('asstorenumbers','asstorenumbersinput')" style="font-size:40px" aria-hidden="true"></i>
+                  <i class="fa fa-chevron-right" (click)="openNextTab('asstorenumbers','asstorenumbersinput')" style="font-size:40px" aria-hidden="true"></i>
+
+                  <div *ngIf="subContractorLocationSuccessfullyRemoved" class=" well well-sm">
+
+                    <p> Store Location Successfully Removed...</p>
+
+                  </div>
+                                    <div *ngIf="subContractorLocationsAlreadyEmpty" class=" well well-sm">
+
+                    <p> Store Location Already Empty...</p>
+
+                  </div>
+                  <div *ngIf="addSubContractorLocationSuccess" class=" well well-sm">
+                    
+                    <p> Store Location Successfully Added...</p>
+
+                  </div>
+
+                  <div *ngIf="addSubContractorLocationFieldCannotBeEmpty" class=" well well-sm">
+
+                    <p> Store Location Field Cannot Be Empty...</p>
+
+                  </div>
+                
+
+
+
+            
+
+            </div>
+
+
+            <div class="tab-pane fade" id="storenumbers{{client[i]+8}}">
+
+           
+            
+
+                  <h4>Store Numbers</h4>
+               
+               
+                  <input id="asstorenumbersinput" type="text" placeholder="(Please Enter Subcontractor Store Numbers...)" [(ngModel)]="subCStoreNumbers"
+                    placeholder="{{subcontractorStoreNumbers}}" name="subContractorStoreNumbers" class="form-control">
+
+
+                  <button type="button" class="btn btn-default" (click)="addStoreNumberToSubcontractorFunc();">Insert <i class="fa fa-plus-circle buttonstyling" aria-hidden="true" ></i></button>
+                  <button type="button" class="btn btn-default" (click)="removeStoreNumberFromSubcontractorFunc();">Remove <i class="fa fa-minus-circle buttonstyling" aria-hidden="true" ></i></button>
+                  <br>
+                  <i class="fa fa-chevron-left" (click)="openNextTab('aslocations','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+                  <i class="fa fa-chevron-left" (click)="openNextTab('aslocations','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+                  <i *ngIf="subContractorName != '' && subContractorPhoneNumber != '' && subContractorEmailAddress != '' && subContractorContactName != '' && subContractorContactPhone != '' && subContractorContactEmail != '' 
+                              && subcontractorStoreNumbers.length > 0 && subcontractorLocations.length > 0" class="fa fa-chevron-right animated flash"
+                    (click)="openNextTab('assubmit','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+                  <i *ngIf="subContractorName != '' && subContractorPhoneNumber != '' && subContractorEmailAddress != '' && subContractorContactName != '' && subContractorContactPhone != '' && subContractorContactEmail != '' 
+                              && subcontractorStoreNumbers.length > 0 && subcontractorLocations.length > 0" class="fa fa-chevron-right animated flash"
+                    (click)="openNextTab('assubmit','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+                  <i *ngIf="subContractorName == '' || subContractorPhoneNumber == '' || subContractorEmailAddress == '' || subContractorContactName == '' || subContractorContactPhone == '' || subContractorContactEmail == '' 
+                          || subcontractorStoreNumbers.length <= 0 || subcontractorLocations.length <= 0" class="fa fa-chevron-right"
+                    (click)="openNextTab('asname','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+                  <i *ngIf="subContractorName == '' || subContractorPhoneNumber == '' || subContractorEmailAddress == '' || subContractorContactName == '' || subContractorContactPhone == '' || subContractorContactEmail == '' 
+                          || subcontractorStoreNumbers.length <= 0 || subcontractorLocations.length <= 0" class="fa fa-chevron-right"
+                    (click)="openNextTab('asname','phonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+                  <div *ngIf="subContractorStoreNumberSuccessfullyRemoved" class=" well well-sm">
+
+                    <p> Store Number Successfully Removed...</p>
+
+                  </div>
+                  <div *ngIf="subContractorStoreNumberSuccessfullyAdded" class=" well well-sm">
+
+                    <p> Store Number Successfully Added...</p>
+
+                  </div>
+                  <div *ngIf="subContractorStoreNumberAlreadyEmpty" class=" well well-sm">
+
+                    <p> Store Number Already Empty...</p>
+
+                  </div>
+                  <div *ngIf="subContractorStoreNumberFieldCannotBeEmpty" class=" well well-sm">
+
+                    <p> Store Number Field Cannot Be Empty...</p>
+
+                  </div>
+                  <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                  <span *ngIf="addSubContractorLoading">LOADING</span>
+                  <i style="font-size:20px;" *ngIf="addSubContractorLoading " class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+             
+
+
+
+            </div>
+            <div class="tab-pane fade" id="addsubcontractor{{client[i]+9}}">
+              <h4>Add Sub Contractor</h4>
+              <input *ngIf="openAddSubContractor && openEditForm   " type="submit" class="btn btn-default form-control animated fadeIn"
+                value="Add Subcontractor">
+              <div *ngIf="addSubContractorNameEmpty" class=" well well-sm">
+
+                Add Sub Contractor Name {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <div *ngIf="addSubContractorPhoneNumberEmpty" class=" well well-sm">
+
+                Add Sub Contractor Phone Number{{editSubContractorFieldEmptyMsg}}
+              </div>
+              <div *ngIf="addSubContractorContactNameEmpty" class=" well well-sm">
+
+                Add Sub Contractor Contact Name{{editSubContractorFieldEmptyMsg}}
+              </div>
+              <div *ngIf="addSubContractorContactPhoneEmpty" class=" well well-sm">
+
+                Add Sub Contractor Contact Phone {{editSubContractorFieldEmptyMsg}}
+              </div>
+              <div *ngIf="addSubContractorContactEmailEmpty" class=" well well-sm">
+
+                Add Sub Contractor Contact Email{{editSubContractorFieldEmptyMsg}}
+              </div>
+              <div *ngIf="addSubContractorLocationsEmpty" class=" well well-sm">
+
+                At Least One Store Location Must Be Loaded Before Continuing...
+
+              </div>
+              <div *ngIf="addSubContractorStoreNumbersEmpty" class=" well well-sm">
+
+                At Least One Store Number Must Be Loaded Before Continuing...
+
+              </div>
+
+
+            </div>
+
+            <!-- <div class="tab-pane fade" id="addsubcontractor{{client[i]+11}}">
+                  <h4>Go To Edit Add Sub-Contractor</h4>
+  
+                <button class="btn btn-primary form-control animated fadeIn" (click)="openEditSubcontractorsFunc(i);">Edit Subcontractor</button>
+
+          
+              </div>-->
+
+
+
+
+
+          </div>
+          <br>
+
+
+        </form>
+        <div>
+          <br>
+          <ul [ngClass]="{'animated': editFormReady || !editFormReady,'fadeOutLeft': !editFormReady && indexVar == i, 'fadeInRight':editFormReady}"
+            class="nav nav-tabs animated fadeIn" *ngIf="indexVar == i&& openEditForm && eFormReady">
+
+            <li class=""><a id="ecname" href="#name" data-toggle="tab" aria-expanded="false">Name</a></li>
+
+            <li class=""><a id="ecphonenumber" href="#phonenumber" data-toggle="tab" aria-expanded="false">Phone</a></li>
+
+            <li class=""><a id="ecemailaddress" href="#emailaddress" data-toggle="tab" aria-expanded="false">Email</a></li>
+
+            <li class=""><a id="eccontactname" href="#contactname" data-toggle="tab" aria-expanded="false">Contact Name</a></li>
+            <li class=""><a id="eccontactphone" href="#contactphone" data-toggle="tab" aria-expanded="true">Contact Phone</a></li>
+            <li class=""><a id="eccontactemail" href="#contactemail" data-toggle="tab" aria-expanded="false">Contact Email</a></li>
+            <li class=""><a id="ecaddsubcontractor" href="#addsubcontractor" data-toggle="tab" aria-expanded="false">Add Sub-Contractor</a></li>
+            <li class=""><a id="eceditsubcontractor" href="#editsubcontractor" data-toggle="tab" aria-expanded="false">Edit Sub-Contractor</a></li>
+
+
+
+
+
+          </ul>
+
+          <div [ngClass]="{'animated': editFormReady || !editFormReady,'fadeOutLeft': !editFormReady && indexVar == i, 'fadeInRight':editFormReady}"
+            id="myTabContent" class="tab-content animated fadeIn" *ngIf="indexVar == i && openEditForm && eFormReady">
+
+            <div style = "border-bottom: 1px solid #ddd" class="tab-pane fade active in" id="name">
+
+              <h4>Name:</h4>
+              <input id="nameform" class="form-control" placeholder="{{client.name}}" name='clientName' [(ngModel)]='clientName' type="text">
+              <button id="showeditclientdialogue" (click)="editClientFunc(client.name,'name');" class="btn btn-default form-control" data-toggle="tooltip"
+                data-placement="right" title="" data-original-title="Tooltip on right">edit</button>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="clientNameIsEmpty">
+                <p>{{clientNameIsEmptyMsg}}</p>
+              </div>
+
+            </div>
+
+            <div style = "border-bottom: 1px solid #ddd"class="tab-pane fade" id="phonenumber">
+              <h4>Phone Number:</h4>
+              <input class="form-control" placeholder="{{client.phonenumber}}" name='clientPhoneNumber' [(ngModel)]='clientPhoneNumber'
+                type="text">
+              <button (click)="editClientFunc(client.name,'phonenumber');" class="btn btn-default form-control">edit</button>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecemailaddress','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecemailaddress','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+        
+              <div *ngIf="clientPhoneNumberIsEmpty">
+                <p>{{clientPhoneNumberIsEmptyMsg}}</p>
+              </div>
+            </div>
+            <div style = "border-bottom: 1px solid #ddd"class="tab-pane fade" id="emailaddress">
+              <h4>Email:</h4>
+              <input class="form-control" placeholder="{{client.emailaddress}}" name='clientEmailAddress' [(ngModel)]='clientEmailAddress'
+                type="email">
+              <button (click)="editClientFunc(client.name,'email');" class="btn btn-default form-control">edit</button>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eccontactname','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eccontactname','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+      
+              <div *ngIf="clientEmailAddressIsEmpty">
+                <p>{{clientEmailAddressIsEmptyMsg}}</p>
+              </div>
+            </div>
+            <div style = "border-bottom: 1px solid #ddd"class="tab-pane fade" id="contactname">
+              <h4>Contact Name:</h4>
+              <input class="form-control" placeholder="{{client.contactname}}" name='clientContactName' [(ngModel)]='clientContactName'
+                type="text">
+              <button (click)="editClientFunc(client.name,'contactname');" class="btn btn-default form-control">edit</button>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eccontactphone','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eccontactphone','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+
+
+              <div *ngIf="clientContactNameIsEmpty">
+                <p>{{clientContactNameIsEmptyMsg}}</p>
+              </div>
+            </div>
+            <div style = "border-bottom: 1px solid #ddd"class="tab-pane fade" id="contactphone">
+              <h4>Contact Phone:</h4>
+              <input class="form-control" placeholder="{{client.contactphone}}" name='clientContactPhone' [(ngModel)]='clientContactPhone'
+                type="text">
+
+              <button (click)="editClientFunc(client.name,'contactphone');" class="btn btn-default form-control">edit</button>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eccontactemail','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eccontactemail','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+
+
+       
+              <div *ngIf="clientContactPhoneIsEmpty">
+                <p>{{clientContactPhoneIsEmptyMsg}}</p>
+              </div>
+            </div>
+            <div style = "border-bottom: 1px solid #ddd" class="tab-pane fade" id="contactemail">
+              <h4>Contact Email:</h4>
+              <input class="form-control" placeholder="{{client.contactemail}}" name='clientContactEmail' [(ngModel)]='clientContactEmail'
+                type="text">
+              <button (click)="editClientFunc(client.name,'contactemail');" class="btn btn-default form-control">edit</button>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecaddsubcontractor','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecaddsubcontractor','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+              <div *ngIf="clientContactEmailIsEmpty">
+                <p>{{clientContactEmailIsEmptyMsg}}</p>
+              </div>
+            </div>
+            <div style = "border-bottom: 1px solid #ddd"class="tab-pane fade" id="addsubcontractor">
+              <h4>Open Add Sub-Contractor Form:</h4>
+
+              <button class="btn btn-default form-control animated fadeIn" (click)="openAddSubcontractorsFunc(i);">Add Subcontractor</button>
+
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('asphonenumber','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eceditsubcontractor','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('eceditsubcontractor','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+            </div>
+            <div style = "border-bottom: 1px solid #ddd"class="tab-pane fade" id="editsubcontractor">
+              <h4>Open Edit Sub-Contractor Form:</h4>
+
+              <button class="btn btn-default form-control animated fadeIn" (click)="openEditSubcontractorsFunc(i,client.name);">Edit Subcontractor</button>
+              <i class="fa fa-chevron-left" (click)="openNextTab('ecname','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-left" (click)="openNextTab('ecname','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecname','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+              <i class="fa fa-chevron-right" (click)="openNextTab('ecname','asphonenumberinput')" style="font-size:40px" aria-hidden="true"></i>
+
+
+            </div>
+            <br>
+          </div>
+
+
+
+          <div [ngClass]="{'animated': openEditForm ,'fadeOutLeft':editSubContractorFormReady || slideOutForm  ,'fadeInRight':openEditForm}"
+               *ngIf="indexVar == i && openEditForm " class="panel panel-primary animated fadeIn">
+           
+            <div class="panel-heading">
+
+              <!-- General Panel Headings -->
+
+              <h3 *ngIf=" !editClientSuccess && !editClientLoading && !editSubContractorFormReady && !addSubContractorFormReady &&!addSubContractorSuccess" class="panel-title animated fadeIn">Edit Client Instructions</h3>
+              <h3 *ngIf="!this.openEditForm && editSubContractorSuccess && !addSubContractorFormReady &&!addSubContractorSuccess" class="panel-title">Edit Successful!</h3>
+              <h3 *ngIf="addSubContractorFormReady && !addSubContractorSuccess " class="panel-title animated fadeIn">Add Sub-Contractor Instructions</h3>
+              <h3 *ngIf="editSubContractorFormReady && !addSubContractorFormReady &&!addSubContractorSuccess " class="panel-title animated fadeIn">Edit Sub-Contractor Instructions</h3>
+              <h3 class="panel-title animated flash" *ngIf="addSubContractorSuccess">Success!</h3>
+              <h3 *ngIf="editSubContractorSuccess" class="panel-title">Edit Successful!</h3>
+              <h3 *ngIf="editClientSuccess" class="panel-title">Edit Successful!</h3>
+
+
+            </div>
+
+            <div class="panel-body">
+
+              <!-- General Loading Message -->
+
+              <div *ngIf="editClientLoading || addSubContractorLoading || editSubContractorLoading || loadingNewSubContractors" class=" text-center">
+
+                <i class="fa fa-cog fa-spin fa-3x fa-fw" style="font-size:20px;"></i> <span class="animated flash" style="font-family: 'Lora', serif; font-size:20px;">//LOADING//</span>
+                <i style="font-size:20px;" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+              </div>
+
+
+              <!-- Success Messages -->
+
+              <h3 class="animated flash text-center" *ngIf="editSubContractorSuccess && !editSubContractorLoading && !loadingNewSubContractors && !addSubContractorFormReady">{{subcontractor.name}} Successfully Edited!</h3>
+              <i *ngIf="editSubContractorSuccess" class="fa fa-check animated flash  text-center" style="font-size:40px;" aria-hidden="true"></i>
+              <h3 class="animated flash text-center" *ngIf="editClientSuccess">{{client.name}} Successfully Edited!</h3>
+              <i *ngIf="editClientSuccess" class="fa fa-check animated flash  text-center" style="font-size:40px;" aria-hidden="true"></i>
+
+              <!-- Edit Client Instructions -->
+
+              <p *ngIf=" openEditForm && eFormReady && !editClientSuccess && !loadingNewSubContractors  " class="text-primary"> 1. Input your information to the appropriate field (eg. "Name").</p>
+              <p *ngIf=" openEditForm && eFormReady && !editClientSuccess && !loadingNewSubContractors  " class="text-success"> 2. Click "Edit" once completed, and wait for the message indicating the edit has been accepted.</p>
+              <p *ngIf=" openEditForm && eFormReady && !editClientSuccess && !loadingNewSubContractors  " class="text-danger"> 3. (Field Cannot Be Empty)</p>
+
+              <!-- Edit Sub-Contractor Instructions -->
+
+              <p *ngIf="addSubContractorFormReady && !addSubContractorSuccess && !addSubContractorLoading && !loadingNewSubContractors && !editClientLoading"
+                class="text-primary animated fadeIn"> 1. Input your information to the appropriate field (eg. "Name").</p>
+              <p *ngIf="addSubContractorFormReady && !addSubContractorSuccess && !addSubContractorLoading && !loadingNewSubContractors && !editClientLoading"
+                class="text-success animated fadeIn"> 2. Click the next tab (eg. "Phone Number"), to input the appropriate information for that field.</p>
+              <p *ngIf="addSubContractorFormReady && !addSubContractorSuccess && !addSubContractorLoading && !loadingNewSubContractors && !editClientLoading"
+                class="text-warning animated fadeIn"> 3. Do this for all fields ( All fields must be filled in ).</p>
+              <p *ngIf="addSubContractorFormReady && !addSubContractorSuccess && !addSubContractorLoading && !loadingNewSubContractors && !editClientLoading"
+                class="text-danger animated fadeIn"> 4. Click the"Submit" tab when finshed, then click "Add Sub Contractor", and wait for the message indicating
+                the new Sub Contractor has been added.</p>
+           
+              <h3 class="animated flash" *ngIf="addSubContractorSuccess">Sub-Contractor Successfully Added!</h3>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+        <br>
+
+        <div>
+
+          <div *ngIf="allSubContractorConditionsMet">
+
+            {{allSubContractorConditionsMetMsg}}
+          </div>
+          <div *ngIf="!allSubContractorConditionsMet">
+
+            {{allSubContractorConditionsMetMsg}}
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

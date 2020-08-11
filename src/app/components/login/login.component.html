@@ -1,0 +1,42 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class = "container">
+  
+<h2 class ="animated fadeIn"> Login</h2>
+<form (submit)="onLoginSubmit()" class ="animated fadeIn">
+
+    <div class = "form-group">
+    <label>Username</label>
+    <input type ="text"[(ngModel)]="username" name="username" class = "form-control">
+    <div *ngIf="userNameCannotBeEmpty" class = "well well-sm">
+      {{userNameCannotBeEmptyMsg}}
+    </div>
+
+  </div>
+
+    <div class = "form-group">
+    <label>Password</label>
+    <input type ="password" [(ngModel)]="password" name="password"class = "form-control">
+    <div *ngIf="passwordCannotBeEmpty" class = "well well-sm">
+      {{passwordCannotBeEmptyMsg}}
+    </div>
+  </div>
+  <input type ="submit" class = "btn btn-primary bounce" value="Submit">
+</form>
+<div *ngIf="loadingLogin" style="background-color:white;" class = "jumbotron text-center">
+  <i style ="font-size:22px;"class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+<span class="sr-only">Loading...</span>
+</div>
+<div *ngIf="successfulLogin" class = "jumbotron text-center pulse animated fadeIn">
+  <h3 style = "font-family: 'Lora', serif; "> Login Successful...</h3>
+ 
+</div>
+<div *ngIf="unSuccessfulLogin" class = "jumbotron text-center animated flash">
+  <h3 style = "font-family: 'Lora', serif; ">{{unSuccessfulLoginMsg}}</h3>
+   <h4 style = "font-family: 'Lora', serif; "> ({{errorMsg}})</h4>
+</div>
+</div>

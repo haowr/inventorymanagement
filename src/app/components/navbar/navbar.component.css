@@ -1,0 +1,281 @@
+/*.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:32px !important}*/
+.weatherinfo2{
+    position:absolute;
+    left:100px;
+    transition:2s;
+    opacity:1;
+
+}
+.removeweatherquickly{
+    display:none;
+
+
+
+}
+
+.weatherinfodesktopclosed{
+
+
+opacity:0;
+transition:.3s;
+
+}
+.weatherinfodesktopopen{
+
+
+opacity:1;
+transition:1s;
+
+}
+    .arrow_box {
+        top:100px;
+        position: absolute;
+        background: #ffffff;
+        border: 1px solid black;
+        width: 200px;
+        height: 200px;
+        border-radius: 3px;
+        -webkit-filter: drop-shadow(0 1px 10px rgba(0,0,0,0.8));
+        -moz-box-shadow: 0 1px 10px rgba(0,0,0,0.8);
+        filter: drop-shadow(0 1px 10px rgba(0,0,0,0.8));
+    }
+    .arrow_box:after, 
+    .arrow_box:before {
+        bottom: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    
+    .arrow_box:after {
+        border-color: rgba(255, 255, 255, 0);
+        border-bottom-color: #ffffff;
+        border-width: 19px;
+        left: 22%;
+        margin-left: -19px;
+    }
+    .arrow_box:before {
+        border-color: rgba(113, 158, 206, 0);
+        border-bottom-color: black;
+        border-width: 20px;
+        left: 22%;
+        margin-left: -20px;
+    }
+.resetweatherdisplay{
+    display:inline-block;
+}
+.divunderlineopen{
+opacity:1;
+width:230px; 
+transition:2s;
+
+}
+.divunderlineclosed{
+opacity:0;
+width:0px; 
+transition:1s;
+
+}
+.weatherinfo3{
+
+
+}
+.weatherinfo3hidden{
+top:176px;
+left:240px;
+height:0px;
+    position:absolute; 
+opacity:0;
+transition:.3s;
+
+}
+.weatherinfoparagraphhidden{
+   
+position:absolute;
+left:12px;
+height:0px;
+opacity:0;
+transition:.1s;
+
+}
+.weatherinfotitle{
+
+opacity:0;
+position:absolute;
+transition:.3s;
+}
+.weatherinfotitle{
+
+opacity:1;
+position:absolute;
+transition:1s;
+}
+.weatherinfotitlehidden{
+
+opacity:0;
+position:absolute;
+transition:1s;
+}
+.weatherinfoparagraph{
+top:176px;
+position:absolute;
+left:240px;
+height:100px;
+opacity:1;
+transition:2s;
+
+
+
+}
+.weatherinfoparagraph2{
+
+position:absolute;
+
+
+opacity:1;
+transition:1s;
+
+
+
+}
+.weatherinfo{
+    position:absolute; 
+
+opacity:0;
+transition:0.5s;
+
+}
+#moveitemleft{
+position:absolute;
+    left:8px;
+    padding-right:200px;
+
+}
+#moveitemleft2{
+position:absolute;
+    left:13px;
+    padding-right:200px;
+
+
+}#moveitemleft3{
+position:absolute;
+    
+    left:7px;
+    padding-right:200px;
+
+
+}
+.pullrightextreme{
+    position:absolute;
+    left:0px;
+}
+.opacitynone{
+    opacity:0;
+}
+.pulllinksright{
+
+    position:absolute;
+    right:0;
+
+}
+.movemenuright{
+
+    padding-left:80px;
+
+}
+.navbar-toggle {
+    overflow: hidden;
+}
+ .navbar-nav {
+    margin: 0;
+    padding: 7.5px 15px;
+}
+.montserrat{
+
+    font-family: 'Montserrat'
+}
+.brand-mobile-landscape{
+
+
+    position: absolute;
+    color: white;
+    font-family:'Lora';
+   font-size:19px;
+   opacity:1;
+   top:22px;
+    left: 53.6%;
+    text-decoration:none;
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
+
+}
+.brand-mobile-landscape-iphonex{
+
+
+    position: absolute;
+    color: white;
+    font-family:'Lora';
+   font-size:19px;
+   opacity:1;
+   top:22px;
+    left: 52.8%;
+    text-decoration:none;
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
+
+}
+.brand-mobile {
+    position: absolute;
+    color: white;
+    font-family:'Lora';
+   font-size:19px;
+   opacity:1;
+   top:22px;
+    left: 57.7%;
+    text-decoration:none;
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
+}
+.brand-mobile-iphonex{
+
+    position: absolute;
+    color: white;
+    font-family:'Lora';
+   font-size:19px;
+   opacity:1;
+   top:22px;
+    left: 56.7%;
+    text-decoration:none;
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
+
+}
+
+.brand-fullscreen {
+    position: absolute;
+    color: white;
+    font-family:'Lora';
+   font-size:19px;
+   opacity:1;
+   top:27px;
+    left: 51%;
+    text-decoration:none;
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
+}
+
+.removebrand{
+
+    display:none;
+
+}
+
+
+.navbar{
+    /*border: 2px solid black;*/
+    z-index: 999999;
+}

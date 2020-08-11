@@ -1,0 +1,53 @@
+#subcontractorborder{
+
+  
+
+}
+
+.placeholderdiv{
+    display:block;
+    background:transparent;
+    width:100%;
+    height:80px;
+
+}
+.placeholderdivsmallwell{
+    display:block;
+    background:transparent;
+    width:100%;
+    height:71px;
+
+}
+.osc{
+font-family: 'Open Sans Condensed', sans-serif;
+
+
+}
+.editclientloadingplaceholder{
+
+    height:22px;
+
+}
+#dialogue{
+    position:fixed;
+    right:-20px;
+    opacity:0;
+}
+#showeditclientdialogue:hover #dialogue{
+    opacity:1;
+
+
+
+
+
+}
+#editclienttitle{
+    border:1px solid #ddd;
+}
+.editindividualsubcontractorscontainer{
+
+    height:300px;
+    width:100%;
+    overflow-y:auto;
+
+}

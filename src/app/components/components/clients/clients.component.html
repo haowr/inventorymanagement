@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  <div id="clientstitle" class=" col-sm-12 text-center">
+    <h1 style="text-decoration:underline;" class="osc">Client List</h1>
+
+
+
+    </div>
+
+<br>
+<br>
+    <div *ngIf="clientsLoading" class = " text-center">
+      <br>
+<br>
+ 
+ <br>
+ <br>
+
+    <i class="fa fa-cog fa-spin fa-3x fa-fw" style="font-size:30px;"></i>  <span class ="animated flash"style="font-family: 'Lora', serif; font-size:30px;">//LOADING//</span><i  style="font-size:30px;" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+  </div>
+    <div *ngIf="!clientsLoading">
+
+      <div class="col-sm-12" *ngFor="let client of clientArray; let i = index">
+        <div class="col-sm-12 divwell" style="border-bottom: 1px solid #ddd;">
+          <div class="col-sm-3 divwellright" style="text-align:center">
+            <br>
+            <i style="font-size:60px;" class="fa fa-building text-default" aria-hidden="true"></i>
+            <h2 style="text-decoration:underline;" class="animated fadeIn osc">{{client.name}}</h2>
+          </div>
+          <div class="col-sm-9 clientname animated fadeIn">
+            <div *ngFor="let subcontractor of clientArray[i].subcontractors; let i = index;">
+              <!--<div *ngFor="let location subcontractor.locations">-->
+              <div *ngFor="let storenumber of subcontractor.storenumbers">
+                <div id="pullstorenumbersleft" class="col-sm-12 text-center">
+                  <a [routerLink]="['/clients',client.name,subcontractor.name]">
+                    <h3 class="  subcontractor">{{storenumber}}</h3>
+                  </a>
+
+
+                </div>
+                <!-- <div *ngFor="let location of subcontractor.locations; let i = index;">
+            <div *ngIf="location != subcontractor.locations[i - 1]"class ="col-sm-6">
+             
+            <a href ="/clients/{{client.name}}/{{subcontractor.name}}"><h2 class = "subcontractor">{{location}}</h2></a>
+
+         
+            </div>
+
+              </div>-->
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+        <br>
+        <br>
+      </div>
+      <div class="col-sm-12">
+        <br>
+        <br>
+        <br>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>

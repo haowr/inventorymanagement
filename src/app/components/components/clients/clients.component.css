@@ -1,0 +1,142 @@
+a{
+  text-decoration:none;
+  color:black;
+}
+
+.subcontractor{
+font-family: 'Open Sans Condensed', sans-serif;
+  opacity:.4;
+  transition:1s;
+   border-right: 1px solid gray;
+  border-left: 1px solid gray;
+
+ 
+  /* height:0px;
+ overflow-y:hidden;*/
+
+}
+.osc{
+font-family: 'Open Sans Condensed', sans-serif;
+
+
+}
+.montserrat{
+
+    font-family: 'Montserrat'
+}
+
+
+.subcontractor:active{
+
+opacity:1;
+transition:1s;
+
+}
+.spacemaker{
+
+      height: 300px;
+
+}
+.subcontractor:hover{
+
+  opacity:1;
+  transition:1s;
+
+}
+.buildingstyling{
+}
+/*
+.buildingboxshadow{
+  box-shadow: 2px 2px 2px black;
+}*/
+.locations{
+ /* position:absolute;
+  display:block;
+  top:-100px;
+  text-align:center;
+  */
+  font-family: 'Open Sans Condensed', sans-serif;
+
+  opacity:0;
+  transition:1s;
+
+}
+.locations:hover{
+
+opacity:0;
+
+}
+
+
+#pullstorenumbersleft{
+
+  padding-right:88px;
+}
+#pushstorenumberright{
+
+  padding-left:55px;
+
+
+}
+#hoverable:hover #tobeuncovered{
+
+opacity:1;
+}
+#tobeuncovered{
+
+  opacity:0;
+}
+.clientname{
+  
+  
+  position:relative;
+  overflow-y:scroll;
+  height:200px;
+  right:-35px;
+  font-family: 'Lora', serif;
+  
+}
+.clientnameheader{
+  font-family:'Anton';
+  text-decoration:underline;
+}
+.subcontractorhref{
+  width:200px;
+  border:1px solid black;
+
+}
+#clientstitle{
+   border:1px solid #ddd;
+}
+.loadingcontainer{
+
+     border:1px solid #ddd;
+
+}
+/*
+.clientname:hover .subcontractor{
+  
+  /*height:50px;*/
+ /* opacity:1;
+  transition:1s;
+}*/
+
+.clientname:hover .locations{
+
+  opacity:1;
+  transition:1s;
+}
+.imgbox{
+  box-shadow: 2px 2px 6px black;
+}
+
+.divwell{
+  border-top: 1px solid #ddd;
+  overflow:hidden;
+
+}
+.divwellright{
+ border-right: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
+
+}

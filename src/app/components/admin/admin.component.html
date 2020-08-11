@@ -1,0 +1,84 @@
+<div class = "container">
+ <br>
+<br>
+<br>
+<br>
+<br>
+  <div class = "row animated fadeIn">
+    <div class = "col-sm-12 text-center">
+      <h1 style="font-family:'Open Sans Condensed'">Edit User Type</h1>
+    </div>
+    <div class = "col-sm-3">
+    </div>
+<div class = "col-sm-6">
+<form >
+<table class="table table-striped table-hover  ">
+  <thead>
+    <tr>
+      
+      <th>User</th>
+      <th>Type</th>
+      <th>Edit Status</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let user of usersArray; let i = index">
+    <tr>
+      <td>{{user.name}}</td>
+      <td>{{user.userType}}</td>
+      <td>   <button (click)="editUserType(user.userType,'User',user._id)"class = "form-control">User</button>
+      </td>
+      <td> <button (click)="editUserType(user.userType,'Admin',user._id)"class = "form-control">Admin</button></td>
+    </tr>
+    
+  </tbody>
+</table>
+<div *ngIf="editLoading" class = " text-center">
+    <i style ="font-size:22px;"class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+</div>
+<div *ngIf="thereMustBeOneAdmin"class = "well well-sm  text-center">
+    <h3>There Must Be At Least One Admin...</h3>
+</div>
+</form>
+<br>
+   <div class = "col-sm-12 text-center">
+      <h1 style="font-family:'Open Sans Condensed' " class = "text-danger">Remove User</h1>
+    </div>
+<table class="table table-striped table-hover animated fadeIn">
+  <thead class = "danger">
+    <tr>
+      
+      <th>User</th>
+      <th>Type</th>
+      
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let user of usersArray; let i = index">
+    <tr class = "danger">
+      <td>{{user.name}}</td>
+      <td>{{user.userType}}</td>
+      <td>   <button (click)="removeUser(user.userType,'User',user._id)"class = "form-control">Remove</button>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+<div *ngIf="editLoading" class = "text-center">
+    <i style ="font-size:22px;"class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+</div>
+<div *ngIf="cannotRemoveAdmin"class = "well well-sm form-control text-center">
+    <h3>Cannot Remove Admin. Either Change This User to a, "User", type or select another User... </h3>
+</div>
+</div>
+<div class = "col-sm-3">
+</div>
+
+<br>
+<br>
+<br>
+<br>
+  </div>
+</div>

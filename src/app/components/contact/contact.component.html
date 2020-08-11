@@ -1,0 +1,79 @@
+<div id="margin">
+<br>
+    <div class="pimg1">
+
+
+        <div class="ptext animated fadeIn">
+            <span class="border trans">
+                <p id="title">CONTACT</p>
+                </span>
+        </div>
+
+    </div>
+    <section class="section section-dark">
+
+
+
+        <form (click)="sendEmail()" class="form-horizontal">
+            <fieldset>
+
+                <legend>Contact:</legend>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label">Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" [(ngModel)]="name" name="name" class="form-control" id="inputName" placeholder="Name">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="text" [(ngModel)]="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" [(ngModel)]="content" name="content" rows="3" id="textArea"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-1">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+                <div *ngIf="weWillGetBackToYou">
+                    <h3 style="color:black;"> Thanks for your interest, we'll get back to you soon!</h3>
+                </div>
+                <div *ngIf="emailFailed">
+                    <h3 style="color:black;"> Unfortunately the email failed. Please try again, or give us a call.</h3>
+                </div>
+            </fieldset>
+        </form>
+        <div *ngIf="loadingEmail">
+            <i style="font-size:22px; color:black;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+            <span class="sr-only">Loading...</span>
+        </div>
+
+    </section>
+    <div class="pimg2">
+        <!--<div class = "ptext">
+                <span class = "border trans">
+                   <a style="color:white;" href = "http://rosebuildingmaintenance.herokuapp.com/"> Rose Inventory Management System</a>
+                </span>
+            </div>-->
+    </div>
+    <!--     <section class = "section section-light">
+
+            <h2 style="text-decoration:underline;"> Improve employee morale  </h2>
+            <a style="text-decoration:none;  color:#666;" href = "https://github.com/ohrha/ROSE"> <p>Employee productivity has been shown to increase in a clean building</p>
+<p>Cleanliness equates to employee happiness and reduced employee turnover</p></a>
+        </section>-->
+
+</div>

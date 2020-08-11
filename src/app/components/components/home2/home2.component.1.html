@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 ">
+            <h1 class="animated fadeIn"> {{name}} </h1>
+            <br>
+            <br>
+            <br>
+            <div id="companyhero" class="jumbotron" style="background-color:white">
+                <!--<h1 class="companyname animated fadeIn" style="font-family: 'Lora', serif; "> {{name}} </h1>-->
+
+                <h1 class="companyname animated fadeIn" style="font-family: 'Lora', serif; "> {{name}} </h1>
+
+
+                <a *ngIf="!authservice.loggedIn()" class="btn btn-default animated fadeIn" [routerLink]="['/login']">Employee Login</a>
+                <a *ngIf="authservice.loggedIn()" class="btn btn-default animated fadeIn" (click)="onLogoutClick()">Employee Logout</a>
+
+                <br>
+                <br>
+
+
+
+
+                <!-- <a *ngIf="authservice.loggedIn()" class = "btn btn-default animated fadeIn" [routerLink]="['/register']">Register</a>
+    -->
+            </div>
+
+
+        </div>
+
+
+
+
+        <br><br>
+        <br><br>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,8 @@
+.locationarray div{
+opacity: 0;
+}
+
+.locationarray:hover div{
+opacity:1;
+transition:1s;
+}

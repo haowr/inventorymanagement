@@ -1,0 +1,123 @@
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="row">
+
+    <button id="openModalButton" class="hidebutton " hidden="true" backdrop="false" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <button class="hidebutton" hidden="true" id="btnclose" data-toggle="modal" data-dismiss="modal" data-target="#myModal">Close</button>
+
+    <!-- Modal -->
+    <div style="z-index:1000002;" class="modal animated fadeIn" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title openssans">ROSE</h2>
+          </div>
+          <div class="modal-body text-center">
+
+            <h3 class="openssans text-center animated flash text-danger" *ngIf="areYouSure">Are you sure?</h3>
+            <i style="font-size:30px;" *ngIf="areYouSure" class="fa fa-exclamation-triangle text-center animated flash" aria-hidden="true"></i>
+            <p *ngIf="areYouSure" class="text-center">(This Action Cannot Be Undone)</p>
+
+            <h3 *ngIf="removalComplete" class="text-center animated flash text-success"> {{clientNameVar}} Successfully Removed!</h3>
+            <i *ngIf="removalComplete" class="fa fa-check animated flash  text-center" style="font-size:40px;" aria-hidden="true"></i>
+
+            <h3 *ngIf="removingClient" class="text-center animated flash "> Removing {{clientNameVar}}...</h3>
+
+            <i style="font-size:30px;" *ngIf="removingClient" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+            <span *ngIf="removingClient">LOADING</span>
+            <i style="font-size:30px;" *ngIf="removingClient" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+          </div>
+
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-danger" (click)="removeClientTest(client);">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div id="removeclienttitle" class=" col-sm-12 text-center">
+
+      <h1 style="text-decoration:underline;" class="osc">Remove Clients</h1>
+
+    </div>
+
+    <div class="col-sm-3">
+    </div>
+
+    <div *ngIf="clientsLoading" class="col-sm-6 text-center">
+      <br>
+      <br>
+      <i class="fa fa-cog fa-spin fa-3x fa-fw" style="font-size:30px;"></i> <span class="animated flash" style="font-family: 'Lora', serif; font-size:30px;">//LOADING//</span>
+      <i style="font-size:30px;" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+
+    </div>
+    <div *ngIf="!clientsLoading" class="col-sm-6 text-center " style="  border-bottom:1px solid #ddd;">
+
+      <div class="col-sm-12 animated fadeIn" *ngFor=" let client of listOfClients">
+
+
+        <div class="col-sm-12 text-center">
+
+          <h2 style="font-family: 'Open Sans Condensed', sans-serif;">{{client.name}}</h2>
+
+          <button class="btn btn-danger" (click)="removeClient(client.name);">Remove Client</button>
+
+        </div>
+
+      </div>
+
+      <div class="jumbotron text-center" *ngIf="clientRemovedSuccess">
+        <p>{{clientRemovedSuccessMsg}}</p>
+      </div>
+
+      <br>
+      <br>
+
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <br>
+    <div class="col-sm-12">
+      <br>
+      <br>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Remove Client Instructions</h3>
+
+
+        </div>
+        <div class="panel-body">
+
+          <p class="text-primary"> 1. Click the, "Remove Client", button corresponding to the client you wish to delete from the database...</p>
+          <p class="text-success"> 2. The, "Remove Client", confirmation dialogue will then appear...</p>
+          <p class="text-warning"> 3. Once you are sure you wish to delete the client selected, click, "Yes". Otherwise, click, "No". (This cannot
+            be undone).</p>
+          <p class="text-danger"> 4. If you have clicked yes, wait, and a dialogue will appear informing you that the selected client has been deleted
+            from the database...
+          </p>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
